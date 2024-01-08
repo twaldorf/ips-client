@@ -50,7 +50,11 @@ export function FilterItem(props) {
 			<label htmlFor="">{props.data.filter}</label>
 			<ul style={subList}>
 				{props.data.values.map((value) => {
-					return <FilterTag value={value} filter={props.data.filter} state={props.state} setState={props.setState}/>
+					return <FilterTag value={value} 
+						filter={props.data.filter} 
+						state={props.state} 
+						setState={props.setState}
+						removeFilter={props.removeFilter}/>
 				})}
 			</ul>
 		</li>
