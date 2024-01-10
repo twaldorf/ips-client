@@ -3,40 +3,44 @@ import { buttonRefine, buttonToggle } from "../styles/buttons";
 import { FilterTag } from "./FilterTag";
 
 export function Filter(props) {
-	const filterArray = Object.keys(props.filter);
-	const activeFilterArray = Object.keys(props.filters);
-
 	const [visible, setVisible] = useState(false);
+
+	const { toggleFilter } = props;
 	
 	const toggleVisibility = () => {
 		setVisible((prevVisible) => !prevVisible);
 	};
 
 	return (
-		<div style={filterContainer}>
-			<div style={filterTopRow}>
-				<button style={buttonToggle} onClick={toggleVisibility}>Filter</button>
+		<div style={ filterContainer }>
+			<div style={ filterTopRow }>
+				<button style={ buttonToggle } onClick={ toggleVisibility }> Filter </button>
 
-				<ul style={activeFilters}>
-					{activeFilterArray && 
-						activeFilterArray.map((filter) => {
-							return (
-									<FilterTag value={filter + ': ' + props.filters[filter]} />
-							)
+				<ul style={ activeFilters }>
+
+					{ props.filters && 
+						props.filters.map((filter) => {
+
+							const value = Object.keys(filter)[0];
+
+							return ( <FilterTag 
+										value={ filter[value] }
+										toggleFilter={ toggleFilter }
+						 	/> )
 					})}
+
 				</ul>
 				
-				<button style={buttonRefine}>Sort By</button>
+				<button style={ buttonRefine }>Sort By</button>
 			</div>
 			
-			{visible && 
-				<ul style={listStyle}>
-					{filterArray.map((filter) => {
+			{ visible && 
+				<ul style={ listStyle }>
+					{ Object.keys( props.filterSchema ).map(( filterKey ) => {
 						return <FilterItem 
-							data={{filter: filter, values: props.filter[filter]}} 
-							state={props.filters} 
-							removeFilter={props.removeFilter} 
-							setState={props.setFilters}/>;
+							data={{filter: filterKey, values: props.filterSchema[filterKey]}}  
+							toggleFilter={ toggleFilter }
+						/>
 					})}
 				</ul>
 			}
@@ -52,9 +56,8 @@ export function FilterItem(props) {
 				{props.data.values.map((value) => {
 					return <FilterTag value={value} 
 						filter={props.data.filter} 
-						state={props.state} 
-						setState={props.setState}
-						removeFilter={props.removeFilter}/>
+						toggleFilter={props.toggleFilter}
+					/>
 				})}
 			</ul>
 		</li>

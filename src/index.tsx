@@ -1,4 +1,5 @@
 import { ComponentProps, render } from 'preact';
+import { signal } from "@preact/signals";
 
 import axios, {isCancel, AxiosError} from 'axios';
 
@@ -9,22 +10,12 @@ import { Filter } from './components/Filter';
 import { Title } from './components/Title';
 import { Footer } from './components/Footer';
 
+//TODO move me
+interface Filters {
+
+}
+
 export function App() {
-
-	const initFilterState = () => {
-		const [filters, setFilters] = useState({});
-	
-		const removeFilter = (filterToDelete)=> {
-			const { filterToDelete, ...newState } = filters;
-			setFilters(newState);
-			console.log(newState)
-		}
-	
-		return {
-			filters, setFilters, removeFilter
-		}
-	}
-
 	const [data, setData] = useState([]);
 	const [schema, setSchema] = useState([]);
 
@@ -66,18 +57,41 @@ export function App() {
 			return <div>Error: {error.message}</div>;
 	}
 
-	const filterStateObject = initFilterState();
+	// Filter state and mutators
+	const [ filters, setFilter ] = useState([]);
+
+	function addFilter(key, value) {
+		const new_filters = [
+			...filters, {[key]: value}
+		]
+		setFilter(new_filters);
+	}
+
+	function removeFilter(key, value) {
+		const new_filters = filters.filter(f => !(key in f && f[key] == value));
+		setFilter(new_filters);
+	}
+
+	function toggleFilter(key, value) {
+		if (!filters.some(f => key in f && f[key] == value)) {
+			addFilter(key, value);
+		} else {
+			removeFilter(key, value);
+		}
+	}
 
 	return (
 		<div>
 			<Title />
 			<Filter 
-				filter={schema[0]} 
-				filters={filterStateObject.filters} 
-				setFilters={filterStateObject.setFilters}
-				removeFilter={filterStateObject.removeFilter}/>
-			<PatternList data={data}
-				filters={filterStateObject.filters} />
+				filterSchema={schema[0]} 
+				filters={filters}
+				toggleFilter={toggleFilter}
+			/>
+			<PatternList 
+				data={data}
+				filters={filters} 
+			/>
 			<Footer />
 		</div>
 	);
