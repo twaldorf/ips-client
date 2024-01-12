@@ -10,7 +10,7 @@ interface DetailProps {
   // url: String;
 }
 
-export const Detail = (props:DetailProps) => {
+export function Detail(props:DetailProps) {
 	const [data, setData] = useState([]);
 
 	const [loading, setLoading] = useState(true);
