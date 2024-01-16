@@ -10,7 +10,6 @@ export function PatternList(props) {
 		<section style={ listStyle }>
 
 			{ data.map(( element ) => {
-				console.log('rendering, ', element)
 
 				if ( filters && filters.length > 0 ) {
 					
@@ -18,8 +17,6 @@ export function PatternList(props) {
 
 						const key = Object.keys(filterObj)[0];
 						const value = filterObj[key];
-
-						console.log( 'comparing ' + value, element[key] );
 
 						return  value == element[key]
 

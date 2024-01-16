@@ -1,0 +1,1 @@
+declare const __S3_URL__: string
