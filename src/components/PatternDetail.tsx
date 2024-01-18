@@ -12,11 +12,11 @@ export function Pattern({ data }) {
       <Link href="/">
         <p>Back to search
         </p> </Link>
-      <section>
-        <div>
-          <img src={`${__S3_URL__}/dps_placeholder.png`} alt="" />
+      <section style={sectionStyle}>
+        <div style={colStyle}>
+          <img style={img} src={`${__S3_URL__}/dps_placeholder.png`} alt="" />
         </div>
-        <div>
+        <div style={colStyle}>
           <table style={table}>
             { keys.map( ( key ) => {
               return (
@@ -32,6 +32,23 @@ export function Pattern({ data }) {
       </section>
     </div>
   )
+}
+
+const img = {
+  width: '100%',
+}
+
+const sectionStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(40%, 1fr))',
+  gap: '20px'
+}
+
+const colStyle = {
+  padding: '20px',
+  border: '1px solid #ddd',
+  borderRadius: '8px',
+  width: '100%',
 }
 
 const table = {

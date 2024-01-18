@@ -41,6 +41,15 @@ section {
 	column-gap: 1.5rem;
 }
 
+a, a:visited {
+	text-decoration: none;
+	color: white;
+}
+
+.title a h1, .title a:visited h1 {
+	color: brown;
+}
+
 .resource {
 	padding: 0.75rem 1.5rem;
 	border-radius: 0.5rem;

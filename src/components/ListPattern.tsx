@@ -10,26 +10,28 @@ export function Pattern(props) {
 		<Link href={`/detail/${props.data.id}`} >
 			<div>
 				<Bullet rank={props.data.id} />
-				<div style={listPatternStyle}>
+				<div style={ { backgroundImage: `url(${__S3_URL__}/${props.data.Image}.png)`, ...listPatternStyle } }>
 					<ListPatternInfo  
-						name={props.data.pattern_name}
-						author={props.data.pattern_designer}
-						price={props.data.pattern_cost}
-						format={props.data.pdf_or_print}
+						name={props.data.Name}
+						author={props.data.Designer}
+						price={props.data.Price}
+						format={props.data.Format}
 						/>
 				</div>
-				<PatternTags />
+				<PatternTags tags={ props.data.Categories } fabrics={ props.data.Fabrics }/>
 			</div>
 		</Link>
 	)
 }
 
 const listPatternStyle = {
+	color: 'white',
+	backgroundColor: 'antiquewhite',
+	fontStyle: 'none',
 	maxHeight: '240px',
 	padding: '20px',
   margin: '0px',
-	backgroundImage: `url(${placeholderImgUrl})`,
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
-	borderRadius: '1vw'
+	borderRadius: '1vw',
 }

@@ -1,9 +1,16 @@
 import { bubbleTag } from "../styles/bubbles"
 
-export function PatternTags(props) {
+export function PatternTags( { tags, fabrics } ) {
 	return (
 		<ul style={tagList}>
-			<li style={bubbleTag}>tag 1 TODO:</li>
+			{
+				tags.map(( tag ) => {
+					return <li style={ bubbleTag }>{ tag }</li>
+				})
+			}
+			{
+				fabrics.map( fabric => <li style={bubbleTag }>{ fabric }</li>)
+			}
 		</ul>
 	)
 }
@@ -13,6 +20,7 @@ const tagList = {
 	display: 'flex',
 	flexDirection: 'row',
 	padding: '0',
+	flexWrap: 'wrap',
 }
 
 const tag = {

@@ -6,6 +6,7 @@ export function Filter(props) {
 	const [visible, setVisible] = useState(false);
 
 	const { toggleFilter } = props;
+
 	
 	const toggleVisibility = () => {
 		setVisible((prevVisible) => !prevVisible);
