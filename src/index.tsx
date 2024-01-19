@@ -17,7 +17,7 @@ const App:preact.FunctionComponent = () => {
 		<div>
 			<Router>
 				<Main path="/" />
-				<Detail path="/detail/:id" id={':id'}/>
+				<Detail path="/detail/:Image" Image={':Image'}/>
 			</Router>
 		</div>
 	)

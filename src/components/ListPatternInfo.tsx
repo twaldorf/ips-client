@@ -8,7 +8,7 @@ export function ListPatternInfo(props) {
 					<li>
             <div style={subitem}>
               <li>{props.format}</li>
-              <li>${props.price}</li>
+              <li>{props.price}</li>
             </div>
           </li>
 					<li>2.5 yards</li>

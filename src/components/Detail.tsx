@@ -5,7 +5,7 @@ import { Title } from "./Title";
 import { Pattern } from "./PatternDetail";
 
 interface DetailProps {
-  id: String;
+  Image: String;
 	path: String;
   // url: String;
 }
@@ -19,7 +19,7 @@ export function Detail(props:DetailProps) {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.get(`/pattern/${props.id}`);
+            const response = await axios.get(`/pattern/${props.Image}`);
             setData(response.data);
         } catch (error) {
             setError(error);

@@ -7,15 +7,15 @@ import { Link } from "preact-router"
 
 export function Pattern(props) {
 	return (
-		<Link href={`/detail/${props.data.id}`} >
+		<Link href={`/detail/${props.data.Image}`} >
 			<div>
 				<Bullet rank={props.data.id} />
 				<div style={ { backgroundImage: `url(${__S3_URL__}/${props.data.Image}.png)`, ...listPatternStyle } }>
 					<ListPatternInfo  
 						name={props.data.Name}
 						author={props.data.Designer}
-						price={props.data.Price}
-						format={props.data.Format}
+						price={props.data.Cost}
+						format={props.data.Formats}
 						/>
 				</div>
 				<PatternTags tags={ props.data.Categories } fabrics={ props.data.Fabrics }/>
