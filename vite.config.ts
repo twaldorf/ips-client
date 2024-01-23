@@ -9,17 +9,17 @@ export default defineConfig({
 	server: {
 		proxy: {
 			'/patterns': {
-        target: import.meta.env.SERVER,
+        target: import.meta.env.VITE_SERVER,
         changeOrigin: true,
 				secure: false
       },
 			'/schema': {
-        target: import.meta.env.SERVER,
+        target: import.meta.env.VITE_SERVER,
         changeOrigin: true,
 				secure: false
       },
 			'/pattern': {
-				target: import.meta.env.SERVER,
+				target: import.meta.env.VITE_SERVER,
         changeOrigin: true,
 				secure: false
 			},
