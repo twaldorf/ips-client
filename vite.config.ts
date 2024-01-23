@@ -9,17 +9,17 @@ export default defineConfig({
 	server: {
 		proxy: {
 			'/patterns': {
-        target: 'http://localhost:8000',
+        target: import.meta.env.SERVER,
         changeOrigin: true,
 				secure: false
       },
 			'/schema': {
-        target: 'http://localhost:8000',
+        target: import.meta.env.SERVER,
         changeOrigin: true,
 				secure: false
       },
 			'/pattern': {
-				target: 'http://localhost:8000',
+				target: import.meta.env.SERVER,
         changeOrigin: true,
 				secure: false
 			},
