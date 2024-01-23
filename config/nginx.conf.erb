@@ -40,6 +40,7 @@ http {
 		location / {
 			add_header 'Cache-Control' "public, max-age=3600";
 			try_files $uri $uri/ /index.html;
+
 			# Uncomment this if statement to force SSL/redirect http -> https
 			# if ($http_x_forwarded_proto != "https") {
 			#   return 301 https://$host$request_uri;
