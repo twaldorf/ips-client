@@ -1,1 +1,1 @@
-web: bin/start-nginx-static -p -e
+web: bin/start-nginx-solo
