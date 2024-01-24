@@ -4,6 +4,7 @@ import { Filter } from "./Filter";
 import { Footer } from "./Footer";
 import { PatternList } from "./PatternList";
 import { Title } from "./Title";
+import { apiUrl } from "../config";
 
 interface MainProps {
 	path: String;
@@ -19,7 +20,7 @@ export function Main({ path }:MainProps) {
 	useEffect(() => {
 			const fetchData = async () => {
 					try {
-							const response = await axios.get('/patterns');
+							const response = await axios.get(`${apiUrl}/patterns`);
 							setData(response.data);
 					} catch (error) {
 							setError(error);
@@ -30,7 +31,7 @@ export function Main({ path }:MainProps) {
 
 			const fetchSchema = async () => {
 				try {
-						const response = await axios.get('/schema');
+						const response = await axios.get(`${apiUrl}/schema`);
 						setSchema(response.data);
 				} catch (error) {
 						setError(error);

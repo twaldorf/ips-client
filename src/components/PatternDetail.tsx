@@ -1,5 +1,6 @@
 import { Link } from 'preact-router';
 import placeholderImgUrl from '../assets/placeholder.png'
+import { s3Url } from '../config';
 
 export function Pattern({ data }) {
   console.log(data)
@@ -14,7 +15,7 @@ export function Pattern({ data }) {
         </p> </Link>
       <section style={sectionStyle}>
         <div style={colStyle}>
-          <img style={img} src={`${__S3_URL__}/dps_placeholder.png`} alt="" />
+          <img style={img} src={`${s3Url}/dps_placeholder.png`} alt="" />
         </div>
         <div style={colStyle}>
           <table style={table}>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "preact/hooks";
 import { Footer } from "./Footer";
 import { Title } from "./Title";
 import { Pattern } from "./PatternDetail";
+import { apiUrl } from "../config";
 
 interface DetailProps {
   Image: String;
@@ -19,7 +20,7 @@ export function Detail(props:DetailProps) {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.get(`/pattern/${props.Image}`);
+            const response = await axios.get(`${apiUrl}/pattern/${props.Image}`);
             setData(response.data);
         } catch (error) {
             setError(error);

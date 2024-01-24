@@ -1,6 +1,7 @@
 import { Bullet } from "./ListBullet"
 import { ListPatternInfo } from "./ListPatternInfo"
 import { PatternTags } from "./PatternTags"
+import { s3Url } from "../config"
 
 import placeholderImgUrl from '../assets/placeholder.png'
 import { Link } from "preact-router"
@@ -10,7 +11,7 @@ export function Pattern(props) {
 		<Link href={`/detail/${props.data.Image}`} >
 			<div>
 				<Bullet rank={props.data.id} />
-				<div style={ { backgroundImage: `url(${__S3_URL__}/${props.data.Image}.png)`, ...listPatternStyle } }>
+				<div style={ { backgroundImage: `url(${s3Url}/${props.data.Image}.png)`, ...listPatternStyle } }>
 					<ListPatternInfo  
 						name={props.data.Name}
 						author={props.data.Designer}
