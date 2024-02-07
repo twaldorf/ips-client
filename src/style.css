@@ -3,8 +3,8 @@
 	line-height: 1.5;
 	font-weight: 400;
 
-	color: #222;
-	background-color: #ffffff;
+	color: var(--primary-text);  
+	background-color: var(--bg-soft);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -43,11 +43,11 @@ section {
 
 a, a:visited {
 	text-decoration: none;
-	color: white;
+	/* color: white; */
 }
 
 .title a h1, .title a:visited h1 {
-	color: brown;
+	color: var(--primary-text);
 }
 
 .resource {

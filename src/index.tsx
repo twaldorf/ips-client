@@ -4,6 +4,7 @@ import Router, { Route } from 'preact-router';
 import axios, {isCancel, AxiosError} from 'axios';
 
 import './style.css';
+import './styles/colors.css';
 import { PropsWithChildren, useEffect, useState } from 'preact/compat';
 import { PatternList } from './components/PatternList';
 import { Filter } from './components/Filter';
