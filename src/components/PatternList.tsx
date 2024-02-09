@@ -1,5 +1,5 @@
 import { Pattern } from "./ListPattern";
-import { filterData } from "./filter_utils";
+import { filterData } from "../utils/filter_utils";
 
 export function PatternList(props) {
 
