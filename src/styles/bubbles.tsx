@@ -3,5 +3,6 @@ export const bubbleTag = {
   padding: '.2rem .8rem',
   color: 'white',
   backgroundColor: '#BF4F74',
+  display: 'flex',
   borderRadius: '1rem'
 }

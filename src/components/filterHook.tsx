@@ -2,18 +2,26 @@ import { useState } from "preact/hooks";
 
 // Filter state and mutators
 export function filterHook() {
-	const [ filters, setFilter ] = useState([]);
+	const [ filterBundle, setFilter ] = useState({
+    filters: [],
+    sortBy: ""
+  });
 	
 	const addFilter = (key, value):void => {
-		const new_filters = [
-			...filters, {[key]: value}
-		]
-		setFilter( new_filters );
+		const new_filter_bundle = {
+      filters: [...filterBundle.filters, {[key]: value}],
+      sortBy: filterBundle.sortBy
+    };
+		setFilter( new_filter_bundle );
 	}
 	
 	const removeFilter = ( key, value ):void => {
-		const next_filters = filters.filter( f => !( key in f && f[key] == value ) );
-		setFilter( next_filters );
+		const next_filters = filterBundle.filters.filter( f => !( key in f && f[key] == value ) );
+    const new_filter_bundle = {
+      filters: next_filters,
+      sortBy: filterBundle.sortBy
+    }
+		setFilter( new_filter_bundle );
 	}
   
   // This is actually an UPDATE function, given its support for "Cost" functionality.
@@ -23,11 +31,11 @@ export function filterHook() {
   }
 	
 	const flipFilter = (key, value):void => {
-		if (!filters.some(f => key in f && f[key] == value)) {
+		if (!filterBundle.filters.some(f => key in f && f[key] == value)) {
 			addFilter(key, value);
 		} else {
 			removeFilter(key, value);
 		}
 	}
-  return { filters, setFilter, toggleFilter, removeFilter, addFilter }
+  return { filterBundle, setFilter, toggleFilter, removeFilter, addFilter }
 }

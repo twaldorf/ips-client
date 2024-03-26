@@ -7,6 +7,8 @@ import { apiUrl } from "../config";
 
 import { filterHook } from "./filterHook";
 import { searchHook } from "./searchHook";
+import { Lander } from "./Lander";
+import { ListPlaceholder } from "./ListPlaceholder";
 
 interface MainProps {
 	path: String;
@@ -15,8 +17,8 @@ interface MainProps {
 export function Main({ path }:MainProps) {
 
 	// Set up search results and filters
-	const { fetchData, fetchSchema, loading, error, schema, searchResults } = searchHook();
-	const { filters, setFilter, toggleFilter } = filterHook();
+	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
+	const { filterBundle, setFilter, toggleFilter } = filterHook();
 
 	// Fetch initial pattern list
 	useEffect(() => {
@@ -25,7 +27,12 @@ export function Main({ path }:MainProps) {
 	}, []); // The empty dependency array ensures that this effect runs only once, equivalent to componentDidMount in class components
 
 	if (loading) {
-			return <div>Loading...</div>;
+			return (
+				<div>
+					<Title />
+					<ListPlaceholder />
+				</div>
+			);
 	}
 
 	if (error) {
@@ -35,14 +42,18 @@ export function Main({ path }:MainProps) {
 	return (
 		<div>
 			<Title />
+			<Lander />
 			<Filter 
 				filterSchema={schema[0]} 
-				filters={filters}
+				filters={filterBundle.filters}
 				toggleFilter={ toggleFilter }
+				sortSearch={ sortSearch }
 			/>
 			<PatternList
 				data={searchResults}
-				filters={filters} 
+				filters={filterBundle.filters} 
+				setPage={setPage}
+				page={page}
 			/>
 			<Footer />
 		</div>

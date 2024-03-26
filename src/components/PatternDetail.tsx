@@ -1,31 +1,71 @@
 import { Link } from 'preact-router';
 import placeholderImgUrl from '../assets/placeholder.png'
 import { s3Url } from '../config';
+import { Fragment, render } from 'preact';
+
+const max_depth = 4;
 
 export function Pattern({ data }) {
-  console.log(data)
-  const { pattern_name, ...data_sans_name } = data;
+  const { title, _id, built_image_file, imageUrl, image_file, url, additional_supplies, ...data_sans_name } = data;
   const  keys = Object.keys( data_sans_name );
+
+  const renderRecursiveTable = (key, datum, depth) => {
+    if ( depth < max_depth ) {
+
+      const sub_keys = Object.keys( datum );
+
+      if (sub_keys.length > 0 && typeof datum === 'object') {
+
+        const results = sub_keys.map( ( sub_key ) => {
+          const sub_datum = datum[ sub_key ];
+          return renderRecursiveTable( sub_key, sub_datum, depth++ );
+        } );
+
+        const result = (
+          <tr style={ row }>
+            { isNaN(parseInt(key)) &&
+              <th style={ row }>{ key }</th>
+            }
+            { results.map( ( result ) => result ) }
+          </tr>
+        );
+        return result;
+
+      } else if ( typeof datum != 'object' ) {
+
+        return ( 
+          <tr style={row}>
+            { isNaN(parseInt(key)) &&
+              <th style={ row }>{ key }</th>
+            }
+            <td style={row}>{ datum }</td>
+          </tr>
+        );
+
+      }
+    }
+  }
 
   return (
     <div>
-      <h2>{ data.pattern_name }</h2>
-      <Link href="/">
+
+      <Link href="/" style={link}>
         <p>Back to search
-        </p> </Link>
-      <section style={sectionStyle}>
+        </p>
+      </Link>
+
+      <h2>{ data.title }</h2>
+      <h3>{ data.designer }</h3>
+
+      <section className={"two-column"}>
         <div style={colStyle}>
-          <img style={img} src={`${s3Url}/dps_placeholder.png`} alt="" />
+          <img style={img} src={`${s3Url}/${data.built_image_file}`} alt="" />
         </div>
         <div style={colStyle}>
+            
           <table style={table}>
             { keys.map( ( key ) => {
-              return (
-                <tr style={row}>
-                  <th style={row}>{ key }</th>
-                  <td style={row}>{ data_sans_name[key] }</td>
-                </tr>
-              )
+              return renderRecursiveTable(key, data[key], 0)
             }) }
           </table>
 
@@ -35,31 +75,29 @@ export function Pattern({ data }) {
   )
 }
 
+const link = {
+  textAlign: 'left'
+}
+
 const img = {
   width: '100%',
 }
 
-const sectionStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(40%, 1fr))',
-  gap: '20px'
-}
-
-const colStyle = {
+export const colStyle = {
   padding: '20px',
   border: '1px solid #ddd',
   borderRadius: '8px',
   width: '100%',
 }
 
-const table = {
+export const table = {
   border: '1px solid #dddddd',
   borderCollapse: 'collapse',
   width: '100%',
   textAlign: 'left',
 }
 
-const row = {
+export const row = {
   padding: '.5rem .75rem',
   border: '1px solid #dddddd',
   verticalAlign: 'left',

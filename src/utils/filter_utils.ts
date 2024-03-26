@@ -21,7 +21,7 @@ export function filterData( data, filters ):boolean {
 
 				// handle range case
 				// TODO: match this to the schema based on a range tuple
-				if ( key == "Cost" ) {
+				if ( key == "price" ) {
 					const cost = element[ key ];
 					const max = filter_value;
 					

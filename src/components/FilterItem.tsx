@@ -57,4 +57,5 @@ const subList = {
 	display: 'flex',
 	flexDirection: 'row',
 	margin: '.5rem 0',
+  flexWrap: 'wrap',
 }

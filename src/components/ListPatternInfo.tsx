@@ -1,4 +1,6 @@
 export function ListPatternInfo(props) {
+  // const ydg = props.ydg60[0] && props.ydg60[1] ? props.ydg60 : props.ydg45;
+  // const format = null;
 	return (
 		<div style={container} className="listItemInfo">
 			<h4>{props.author}</h4>
@@ -11,7 +13,9 @@ export function ListPatternInfo(props) {
               <li>{props.price}</li>
             </div>
           </li>
-					<li>2.5 yards</li>
+					<li>
+            {/* { ydg && `${ydg[0]} - ${ydg[1]}` } yards */}
+          </li>
 				</ul>
 			</div>
 		</div>

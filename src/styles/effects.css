@@ -1,0 +1,4 @@
+#button-sort:hover {
+  color: white;
+  background-color: var(--accent-text);
+}

@@ -23,4 +23,5 @@ const listStyle = {
 	flexDirection: 'column',
 	textAlign: 'left',
 	padding: '0',
+	flexWrap: 'wrap',
 }

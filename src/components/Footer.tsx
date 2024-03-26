@@ -2,12 +2,8 @@ export function Footer() {
   return (
     <footer style={footer}>
       <p>
-        Indie Pattern List is a part of Design Pattern Systems made for my friends in the textile community.
+        Super Pattern List is a part of the Design Pattern Systems toolkit, a set of collaborative textile design tools made by me (trevor) for my friends.
       </p>
-      <ul>
-        <li><a href="">Link 1</a></li>
-        <li><a href="">Link 1</a></li>
-      </ul>
     </footer>
   )
 }

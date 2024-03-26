@@ -1,5 +1,23 @@
 :root {
   --primary-text: #1F1F1E;
   --accent-text: #7D2BE7;
-  --bg-soft: #F9F8ED;
+  --bg-soft: #FFF;
+  --active-effect: #E4BE36;
+  --inactive-effect: #EB7F50;
+  --bg-inset: #FDF6F3;
+  --border-soft: #dedede;
+}
+
+@font-face {
+  font-family: 'FitzgeraldBoldItalic';
+  src:  url('../assets/fonts/FitzgeraldBI.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'FitzgeraldBold';
+  src:  url('../assets/fonts/FitzgeraldB.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
 }

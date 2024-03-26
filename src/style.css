@@ -18,12 +18,13 @@ body {
 	display: flex;
 	align-items: center;
 	min-height: 100vh;
+	padding: 4rem;
 }
 
 #app {
 	max-width: 1280px;
 	margin: 0 auto;
-	text-align: center;
+	text-align: left;
 }
 
 img {
@@ -39,6 +40,18 @@ section {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	column-gap: 1.5rem;
+	width: 100%;
+	box-sizing: border-box;
+}
+section.two-column {
+	margin: 0;
+	display: grid;
+  grid-template-columns: repeat(2, minmax(40%, 1fr));
+  gap: 4rem;
+}
+section.one-column {
+	grid-template-columns: auto;
+	margin: 0;
 }
 
 a, a:visited {
@@ -75,14 +88,36 @@ a, a:visited {
 	margin: 0;
 }
 
-@media (max-width: 639px) {
+table.input-table td, th {
+	padding: 0rem 1rem;
+	border: 1px solid var(--border-soft);
+	background-color: var(--bg-soft);
+	font-weight: normal;
+}
+
+input, textarea, select {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: inherit;
+  padding: 0;
+  margin: 1rem 0;
+  border-bottom: 1px solid var(--primary-text); /* Black underline */
+  color: var(--primary-text); /* Text color */
+}
+
+@media (max-width: 839px) {
 	#app {
 		margin: 2rem;
 	}
 	section {
 		margin-top: 5rem;
-		grid-template-columns: 1fr;
+	  grid-template-columns: 1fr;
 		row-gap: 1rem;
+	}
+	section.two-column {
+		display: flex;
+		flex-wrap: wrap;
 	}
 }
 
