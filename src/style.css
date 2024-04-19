@@ -11,6 +11,8 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	--body-padding: 4rem;
 }
 
 body {
@@ -18,7 +20,7 @@ body {
 	display: flex;
 	align-items: center;
 	min-height: 100vh;
-	padding: 4rem;
+	padding: var(--body-padding);
 }
 
 #app {
@@ -29,10 +31,6 @@ body {
 
 img {
 	margin-bottom: 1.5rem;
-}
-
-img:hover {
-	filter: drop-shadow(0 0 2em #673ab8aa);
 }
 
 section {
@@ -73,11 +71,6 @@ a, a:visited {
 	border: 1px solid transparent;
 }
 
-.resource:hover {
-	border: 1px solid #000;
-	box-shadow: 0 25px 50px -12px #673ab888;
-}
-
 .listItemInfo > h3 {
 	font-size: 2.2rem;
 	margin: 0;
@@ -107,6 +100,11 @@ input, textarea, select {
 }
 
 @media (max-width: 839px) {
+	body {
+		--solo-col-width: 220px;
+		--body-padding: .2vw;
+	}
+
 	#app {
 		margin: 2rem;
 	}

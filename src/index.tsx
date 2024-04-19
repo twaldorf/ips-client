@@ -5,6 +5,7 @@ import axios, {isCancel, AxiosError} from 'axios';
 
 import './style.css';
 import './styles/colors.css';
+import './styles/type.css';
 import './styles/effects.css';
 import './styles/icons.css';
 import { PropsWithChildren, useEffect, useState } from 'preact/compat';
@@ -15,6 +16,7 @@ import { Footer } from './components/Footer';
 import { Main } from './components/Main';
 import { Detail } from './components/Detail';
 import { Input } from './components/InputPattern';
+import Edit from './components/Edit';
 
 const App:preact.FunctionComponent = () => {
 	return (
@@ -22,6 +24,7 @@ const App:preact.FunctionComponent = () => {
 				<Main path="/" />
 				<Detail path="/detail/:Image" Image={':Image'}/>
 				<Input path="/input" />
+				<Edit path="/edit/:id" id={":id"} />
 			</Router>
 	)
 }

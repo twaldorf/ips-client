@@ -2,12 +2,21 @@ import { Link } from 'preact-router';
 import placeholderImgUrl from '../assets/placeholder.png'
 import { s3Url } from '../config';
 import { Fragment, render } from 'preact';
+import { addPattern } from './addPatternHook';
+import { noteBubble } from '../styles/bubbles';
+import { buttonRefine } from '../styles/buttons';
 
 const max_depth = 4;
 
 export function Pattern({ data }) {
   const { title, _id, built_image_file, imageUrl, image_file, url, additional_supplies, ...data_sans_name } = data;
-  const  keys = Object.keys( data_sans_name );
+  const keys = Object.keys( data_sans_name );
+
+  const generic_pattern = {title: data.title}
+
+  const handleEditPattern = () => {
+    // addPattern(generic_pattern);
+  }
 
   const renderRecursiveTable = (key, datum, depth) => {
     if ( depth < max_depth ) {
@@ -20,6 +29,7 @@ export function Pattern({ data }) {
           const sub_datum = datum[ sub_key ];
           return renderRecursiveTable( sub_key, sub_datum, depth++ );
         } );
+
 
         const result = (
           <tr style={ row }>
@@ -50,7 +60,7 @@ export function Pattern({ data }) {
     <div>
 
       <Link href="/" style={link}>
-        <p>Back to search
+        <p>&larr; Back to search
         </p>
       </Link>
 
@@ -62,13 +72,17 @@ export function Pattern({ data }) {
           <img style={img} src={`${s3Url}/${data.built_image_file}`} alt="" />
         </div>
         <div style={colStyle}>
-            
+          <div style={noteBubble}>
+            <label for="pattern-url"><h4 className="accent">Link to pattern</h4></label>
+            <a className="accent" id="pattern-url" href={url}>{url}</a>
+          </div>
           <table style={table}>
             { keys.map( ( key ) => {
               return renderRecursiveTable(key, data[key], 0)
             }) }
           </table>
-
+          
+          <a href={`/edit/${data._id}`}><button style={editButton} onClick={handleEditPattern}>Edit pattern</button></a>
         </div>
       </section>
     </div>
@@ -83,10 +97,12 @@ const img = {
   width: '100%',
 }
 
+const editButton = {
+  ...buttonRefine,
+  marginTop: '1rem',
+}
+
 export const colStyle = {
-  padding: '20px',
-  border: '1px solid #ddd',
-  borderRadius: '8px',
   width: '100%',
 }
 

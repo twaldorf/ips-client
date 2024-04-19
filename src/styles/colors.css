@@ -6,6 +6,7 @@
   --inactive-effect: #EB7F50;
   --bg-inset: #FDF6F3;
   --border-soft: #dedede;
+  --solo-col-width: 620px;
 }
 
 @font-face {

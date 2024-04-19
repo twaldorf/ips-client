@@ -1,0 +1,11 @@
+h4.accent {
+  margin: 0;
+  /* padding: 0 0 0 .4rem; */
+  /* text-transform: uppercase; */
+  color: var(--accent-text);
+  /* border-left: 4px solid var(--accent-text); */
+}
+
+a.accent {
+  color: var(--accent-text);
+}

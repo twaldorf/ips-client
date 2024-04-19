@@ -6,3 +6,9 @@ export const bubbleTag = {
   display: 'flex',
   borderRadius: '1rem'
 }
+
+export const noteBubble = {
+  border: '1px solid var(--accent-text)',
+  padding: '1rem',
+  margin: '0 0 1rem 0',
+}
