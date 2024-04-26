@@ -16,7 +16,7 @@ export default defineConfig({
 			// 	secure: false
       // },
 			'/patterns': {
-				target: import.meta.env.VITE_VERCEL_SERVER_URL,
+				target: import.meta.env.VITE_SERVER_URL,
         changeOrigin: true,
 				secure: false
 			},
