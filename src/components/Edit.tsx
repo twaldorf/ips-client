@@ -7,6 +7,8 @@ import { h2Style } from "./PatternList";
 import axios from "axios";
 import { apiUrl } from "../config";
 import { buttonRefine } from "../styles/buttons";
+import { noteBubble } from "../styles/bubbles";
+import { handleFieldUpdate } from "./utilities/formUtils";
 
 export function EditPattern(props) {
   const { id } = props;
@@ -18,6 +20,7 @@ export function EditPattern(props) {
 
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,13 +49,14 @@ export function EditPattern(props) {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${apiUrl}/pattern/update`, JSON.stringify(data)
+        `${apiUrl}/pattern/update?_id=${id}`, data
       )
       console.log(response)
     } catch (e) {
       setError("error sending pattern update")
     } finally {
       setLoading(false);
+      setSuccess(true);
     }
   }
 
@@ -64,15 +68,23 @@ export function EditPattern(props) {
       () => [...notionIndexArray, notionIndexArray.length])
   };
 
-  const handleFieldUpdate = (e) => {
-    const elt = e.target;
-    const key = elt.name;
-    const value = elt.value;
-    elt.style.height = elt.scrollHeight + 'px';
-    setFormData(prev => ({
-      ...formdata,
-      [ key ]: value,
-    }))
+  const handleUpdate = (e) => {
+    handleFieldUpdate(e, setFormData, formdata)
+  }
+
+  if (success) {
+    return (
+      <Fragment>
+        <h2 style={h2StylePlus}>Update a pattern</h2>
+        <section className="one-column" style={formBg}>
+
+          <div style={noteBubble} className={"accent"}>
+            <h3>Success!</h3>
+            <p>Your edits have been added to the review queue for safety. Thanks for contributing.</p>
+          </div>
+        </section>
+      </Fragment>
+    )
   }
 
   return (
@@ -92,7 +104,7 @@ export function EditPattern(props) {
                       name={ key } 
                       defaultValue={ data[ key ] } 
                       style={ fieldStyle }
-                      onInput={ handleFieldUpdate }
+                      onInput={ handleUpdate }
                       readOnly={ key == '_id' || key == 'built_image_file' }
                     />
                   }
@@ -101,7 +113,7 @@ export function EditPattern(props) {
             } ) }
           </table>
           <div>
-            <button style={ buttonRefine }>Submit</button>
+            <button style={ buttonRefine } disabled={success}>Submit</button>
           </div>
         </form>
       </section>
