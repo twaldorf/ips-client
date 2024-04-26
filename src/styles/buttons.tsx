@@ -7,6 +7,11 @@ export const buttonToggle = {
 	color: 'white',
 }
 
+export const buttonToggleDisabled = {
+	...buttonToggle,
+	backgroundColor: '#ddd',
+}
+
 export const buttonRefine = {
 	...buttonToggle,
 	backgroundColor: '#fff',

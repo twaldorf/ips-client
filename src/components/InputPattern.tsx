@@ -1,7 +1,7 @@
 import { Fragment } from "preact/jsx-runtime";
 import { Title } from "./Title";
 import { Footer } from "./Footer";
-import { row, table, colStyle } from "./PatternDetail"
+import { row, table, colStyle, Pattern } from "./PatternDetail"
 import { useState } from "preact/hooks";
 import { h2Style } from "./PatternList";
 import { handleCheckboxUpdate, handleFieldUpdate } from "./utilities/formUtils";
@@ -11,6 +11,8 @@ import axios from "axios";
 export default function InputPattern(props) {
   const [ notionIndexArray, setNotionCount ] = useState([1]);
   const [ form_data, setFormData ] = useState({});
+  const [ submit_state, setSubmitState ] = useState("");
+  const [ response, setResponse ] = useState("");
 
   let notion_count = 1;
 
@@ -50,20 +52,35 @@ export default function InputPattern(props) {
   
   async function Submit(e) {
     e.preventDefault();
-    console.log(form_data)
-
     try {
-      // setLoading(true);
+      setSubmitState("loading");
       const response = await axios.post(
         `${apiUrl}/pattern/new`, form_data
       )
-      console.log(response)
+      setResponse(response);
     } catch (e) {
-      // setError("error sending pattern update")
+      setSubmitState("failure");
     } finally {
-      // setLoading(false);
-      // setSuccess(true);
+      setSubmitState("success");
     }
+  }
+
+  if (submit_state == "loading") {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  } else if (submit_state == "success") {
+    return (
+      <div>
+        <h2>Success!</h2>
+        <p>Your pattern has been successfully submitted for review and addition to the database.</p>
+        <p>Below is a preview of your pattern information.</p>
+        <p>If you made a mistake, please edit it when the pattern is live.</p>
+        <Pattern data={form_data} />
+      </div>
+    )
   }
 
   return (
@@ -73,6 +90,12 @@ export default function InputPattern(props) {
 To respect the intellectual property rights of the pattern creators please only include factual information.</p>
       <p>Trying to update an existing pattern? You can use the pattern detail page to update or correct an existing pattern.</p>
       <section className="one-column" style={formBg}>
+        { submit_state == "failure" && 
+          <div>
+            <h3>Pattern submission failure!</h3>
+            <p>{response}</p>
+          </div>
+        }
         <h2>New Pattern Info</h2>
         <form action="" onSubmit={Submit}>
           <table style={table} className="input-table">

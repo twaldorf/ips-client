@@ -17,6 +17,7 @@ import { Main } from './components/Main';
 import { Detail } from './components/Detail';
 import { Input } from './components/InputPattern';
 import Edit from './components/Edit';
+import { Suggestions } from './components/Suggestions';
 
 const App:preact.FunctionComponent = () => {
 	return (
@@ -25,6 +26,7 @@ const App:preact.FunctionComponent = () => {
 				<Detail path="/detail/:Image" Image={':Image'}/>
 				<Input path="/input" />
 				<Edit path="/edit/:id" id={":id"} />
+				{/* <Suggestions path="/suggestions" /> */}
 			</Router>
 	)
 }

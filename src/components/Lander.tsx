@@ -1,8 +1,9 @@
 export const Lander = () => {
   return (
     <div style={separator}>
-      <p>Thousands of patterns for sewing garments, gear, costumes, decor, and plushies.</p>
-      <p>Instantly searchable and easily filterable.</p>
+      <p>An ever growing database of patterns for sewing garments, gear, decor, and plushies.</p>
+      <p>Easily filterable, sortable, and searchable.</p>
+      <p>Find a pattern below or add a missing pattern.</p>
     </div>
   );
 }

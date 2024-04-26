@@ -9,6 +9,7 @@ import { filterHook } from "./filterHook";
 import { searchHook } from "./searchHook";
 import { Lander } from "./Lander";
 import { ListPlaceholder } from "./ListPlaceholder";
+import { PurpleBar } from "./PurpleBar";
 
 interface MainProps {
 	path: String;
@@ -41,6 +42,7 @@ export function Main({ path }:MainProps) {
 
 	return (
 		<div>
+			{/* <PurpleBar /> */}
 			<Title />
 			<Lander />
 			<Filter 

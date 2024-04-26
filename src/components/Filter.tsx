@@ -1,9 +1,10 @@
 import { useState } from "preact/hooks";
-import { buttonRefine, buttonToggle } from "../styles/buttons";
+import { buttonRefine, buttonToggle, buttonToggleDisabled } from "../styles/buttons";
 import { FilterTag } from "./FilterTag";
 import { FilterPanel } from "./FilterPanel";
 import { FilterRow } from "./FilterRow";
 import { SortByPicker } from "./SortByPicker";
+import { SearchBar } from "./filter/SearchBar";
 
 export function Filter(props) {
 	const [visible, setVisible] = useState(false);
@@ -23,7 +24,8 @@ export function Filter(props) {
 	return (
 		<div style={ filterContainer }>
 			<div style={ filterTopRow }>
-				<button style={ buttonToggle } onClick={ toggleVisibility }> Filter </button>
+				<button disabled={true} style={ buttonToggleDisabled } onClick={ toggleVisibility }> Filter </button>
+				<SearchBar/>
 				<button style={ buttonRefine } onClick={ toggleSortVisibility } id={"button-sort"}>Sort By</button>
 
 				{

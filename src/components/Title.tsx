@@ -7,9 +7,6 @@ export function Title(props) {
   			<h1 style={title}>Super Pattern List</h1>
       </Link>
       <nav style={nav}>
-        <Link href="/about">
-          <li style={link}>About</li>
-        </Link>
         <Link href="/input">
           <li style={link}>Add Pattern</li>
         </Link>
