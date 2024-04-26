@@ -5,21 +5,21 @@ import preact from '@preact/preset-vite';
 export default defineConfig({
 	server: {
 		proxy: {
-			'/patterns': {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-				secure: false
-      },
+			// '/patterns': {
+      //   target: "http://localhost:8000",
+      //   changeOrigin: true,
+			// 	secure: false
+      // },
 			// '/schema': {
       //   target: import.meta.env.VITE_VERCEL_SERVER,
       //   changeOrigin: true,
 			// 	secure: false
       // },
-			// '/pattern': {
-			// 	target: import.meta.env.VITE_VERCEL_SERVER,
-      //   changeOrigin: true,
-			// 	secure: false
-			// },
+			'/patterns': {
+				target: import.meta.env.VITE_VERCEL_SERVER,
+        changeOrigin: true,
+				secure: false
+			},
 		}
 	},
 	plugins: [preact()],
