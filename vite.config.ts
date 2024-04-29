@@ -11,13 +11,13 @@ export default defineConfig({
 			// 	secure: false
       // },
 			'/schema': {
-        target: import.meta.env.VITE_SERVER_URL,
+        target: process.env.VITE_SERVER_URL,
         changeOrigin: true,
 				secure: false
       },
 			'/patterns': {
-				// target: process.env.VITE_SERVER_URL,
-				target: import.meta.env.VITE_SERVER_URL,
+				target: process.env.VITE_SERVER_URL,
+				// target: import.meta.env.VITE_SERVER_URL,
         changeOrigin: true,
 				secure: false
 			},
