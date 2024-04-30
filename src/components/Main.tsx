@@ -42,7 +42,7 @@ export function Main({ path }:MainProps) {
 
 	return (
 		<div>
-			{/* <PurpleBar /> */}
+			<PurpleBar />
 			<Title />
 			<Lander />
 			<Filter 

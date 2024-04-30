@@ -2,7 +2,7 @@ import { Link } from "preact-router"
 
 export const PurpleBar = () => {
   return (
-    <div style={ purple }>SuperPatternList is in early development. You can <a href="/suggestions" style={link}>report a bug or suggest a feature here</a> and that would be awesome of you - trevor</div>
+    <div style={ purple }>SuperPatternList is in early development. You can <a href="https://forms.gle/PokdoBrryFGqokt19" target="new" style={link}>report a bug or suggest a feature here</a> and that would be awesome of you - trevor</div>
   )
 }
 
