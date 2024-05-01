@@ -6,7 +6,7 @@ export function Title(props) {
       <Link href="/">
   			<h1 style={title}>Super Pattern List</h1>
       </Link>
-      <nav style={nav}>
+      <nav style={nav} className="flex-row-to-col">
         <Link href="/input">
           <li style={link}>Add Pattern</li>
         </Link>
@@ -24,20 +24,20 @@ const flexRow = {
 }
 
 const nav = {
-  ...flexRow,
   textAlign: 'center',
   listStyle: 'none',
   alignContent: 'center',
   justifyContent: 'space-between',
   minWidth: '140px',
+  alignItems: 'center',
 }
 
 const head = {
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  margin: '0',
-  padding: '4rem 0',
+  // margin: '0',
+  padding: '3rem 0',
   justifyContent: 'space-between'
 }
 
@@ -45,7 +45,7 @@ const title = {
   textAlign: 'left',
   fontFamily: 'FitzgeraldBold',
   fontSize: '48px',
-  margin: 0,
+  // margin: 0,
   color: 'var(--primary-text)',
 }
 

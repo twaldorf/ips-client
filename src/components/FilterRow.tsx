@@ -4,7 +4,7 @@ import { FilterTag } from "./FilterTag";
 export function FilterRow({ filters, toggleFilter}) {
   return (
     <Fragment>
-      <ul style={ activeFilters }>
+      <ul className="one-column">
       { filters.length > 0 && <label>Filters: </label> }
     	{ filters && 
     		filters.map((filter) => {

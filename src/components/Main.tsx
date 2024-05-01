@@ -24,7 +24,7 @@ export function Main({ path }:MainProps) {
 	// Fetch initial pattern list
 	useEffect(() => {
 		fetchData();
-		fetchSchema();
+		// fetchSchema();
 	}, []); // The empty dependency array ensures that this effect runs only once, equivalent to componentDidMount in class components
 
 	if (loading) {

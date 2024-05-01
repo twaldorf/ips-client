@@ -35,21 +35,12 @@ export const SearchBar = () => {
         <span style={ tooltipStyle } >Search is currently disabled for testing</span> 
       }
       <input 
-      style={ searchBar } 
-      type="text" 
+      className="searchbar"
+      type="text"
       placeholder="Search names, categories, garment types, styles..." 
       disabled={true}
       onPointerEnter={handleEnter}
       onPointerLeave={handleLeave}></input>
     </Fragment>
   );
-}
-
-const searchBar = {
-	width: '60%',
-	margin: '0 4rem',
-	backgroundColor: '#eee',
-	borderRadius: '6px',
-	padding: '1rem',
-	border: 'none',
 }

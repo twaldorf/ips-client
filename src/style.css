@@ -52,6 +52,11 @@ section.one-column {
 	margin: 0;
 }
 
+.flex-row-to-col {
+	display: flex;
+	flex-direction: row;
+}
+
 a, a:visited {
 	text-decoration: none;
 	/* color: white; */
@@ -99,6 +104,10 @@ input, textarea, select {
   color: var(--primary-text); /* Text color */
 }
 
+footer {
+	gridTemplateColumns: 'minmax(20px, auto) 1fr 1fr',
+}
+
 @media (max-width: 839px) {
 	body {
 		--solo-col-width: 220px;
@@ -106,7 +115,9 @@ input, textarea, select {
 	}
 
 	#app {
-		margin: 2rem;
+		margin: auto;
+		padding: 0 5%;
+		max-width: 80%;
 	}
 	section {
 		margin-top: 5rem;
@@ -117,9 +128,22 @@ input, textarea, select {
 		display: flex;
 		flex-wrap: wrap;
 	}
+	.flex-row-to-col {
+		flex-direction: column;
+	}
+
+	header {
+		margin-top: 1rem;
+	}
+	nav {
+		margin: auto;
+	}
+	footer {
+		grid-template-columns: 1fr;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
 	:root {
 		color: #ccc;
 		background-color: #1a1a1a;
@@ -131,4 +155,7 @@ input, textarea, select {
 	.resource:hover {
 		border: 1px solid #bbb;
 	}
-}
+	h1, h2, h3, h4, p {
+		color: #ccc;
+	}
+} */

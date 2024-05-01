@@ -23,7 +23,7 @@ export function Filter(props) {
 
 	return (
 		<div style={ filterContainer }>
-			<div style={ filterTopRow }>
+			<div style={ filterTopRow } className="flex-row-to-col">
 				<button disabled={true} style={ buttonToggleDisabled } onClick={ toggleVisibility }> Filter </button>
 				<SearchBar/>
 				<button style={ buttonRefine } onClick={ toggleSortVisibility } id={"button-sort"}>Sort By</button>
@@ -43,7 +43,6 @@ export function Filter(props) {
 
 const filterTopRow = {
 	display: 'flex',
-	flexDirection: 'row',
 	justifyContent: 'space-between',
 	margin: '0 0 20px 0',
 	position: 'relative',

@@ -1,0 +1,16 @@
+input.searchbar {
+  width: 100%;
+	margin: 0 20%;
+	background-color: #eee;
+	border-radius: 6px;
+	padding: 1rem;
+	border: none;
+}
+
+@media screen and (max-width: 839px) {
+  input.searchbar {
+    margin: 1rem 0;
+    width: unset;
+  }
+  
+}

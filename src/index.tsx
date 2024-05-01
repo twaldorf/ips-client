@@ -8,6 +8,7 @@ import './styles/colors.css';
 import './styles/type.css';
 import './styles/effects.css';
 import './styles/icons.css';
+import './styles/search.css';
 import { PropsWithChildren, useEffect, useState } from 'preact/compat';
 import { PatternList } from './components/PatternList';
 import { Filter } from './components/Filter';

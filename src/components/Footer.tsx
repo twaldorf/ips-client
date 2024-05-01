@@ -11,6 +11,5 @@ export function Footer() {
 const footer = {
   padding: '4rem 0',
   display: 'grid',
-  gridTemplateColumns: 'minmax(20px, auto) 1fr 1fr',
   gap: '4rem',
 }

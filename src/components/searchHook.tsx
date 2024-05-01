@@ -24,6 +24,7 @@ export function searchHook() {
 		} catch ( error ) {
 				setError( error );
 		} finally {
+			console.log('done')
 				setLoading(false);
 		}
 	};

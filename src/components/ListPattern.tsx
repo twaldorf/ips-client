@@ -38,4 +38,6 @@ const listPatternStyle = {
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
 	borderRadius: '1vw',
+	backgroundSize: 'cover',
+	backgroundPosition: 'top',
 }
