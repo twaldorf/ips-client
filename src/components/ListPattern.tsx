@@ -36,8 +36,7 @@ const listPatternStyle = {
 	padding: '20px',
   margin: '0px',
 	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'center',
+	backgroundPosition: 'top',
 	borderRadius: '1vw',
 	backgroundSize: 'cover',
-	backgroundPosition: 'top',
 }
