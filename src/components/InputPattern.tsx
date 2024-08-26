@@ -104,11 +104,23 @@ To respect the intellectual property rights of the pattern creators please only 
                 <td><input type="text" name="name" onInput={handleUpdate} /></td>
             </tr>
             <tr style={row}>
+                <th><label htmlFor="category">Category</label></th>
+                <td>
+                  <select name="category" onChange={handleUpdate}>
+                    <option value="Garment">Garment</option>
+                    <option value="Gear">Gear</option>
+                    <option value="Decor">Decor</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </td>
+            </tr>
+            <tr style={row}>
                 <th>
                   <label htmlFor="author">Pattern Designer(s)</label>
                 </th>
                 <td><input type="text" name="author" onInput={handleUpdate} /></td>
             </tr>
+            
             <tr style={row}>
                 <th><label htmlFor="desc">Description</label></th>
                 <td><textarea type="textbox"  name="desc" onInput={handleUpdate} /></td>

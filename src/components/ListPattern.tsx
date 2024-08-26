@@ -7,7 +7,6 @@ import placeholderImgUrl from '../assets/placeholder.png'
 import { Link } from "preact-router"
 
 export function Pattern(props) {
-	console.log(props.data)
 	return (
 		<Link href={`/detail/${props.data._id}`} >
 			<div>
@@ -28,7 +27,7 @@ export function Pattern(props) {
 	)
 }
 
-const listPatternStyle = {
+export const listPatternStyle = {
 	color: 'white',
 	backgroundColor: 'antiquewhite',
 	fontStyle: 'none',
@@ -36,8 +35,7 @@ const listPatternStyle = {
 	padding: '20px',
   margin: '0px',
 	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'center',
+	backgroundPosition: 'top',
 	borderRadius: '1vw',
 	backgroundSize: 'cover',
-	backgroundPosition: 'top',
 }

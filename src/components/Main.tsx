@@ -10,6 +10,7 @@ import { searchHook } from "./searchHook";
 import { Lander } from "./Lander";
 import { ListPlaceholder } from "./ListPlaceholder";
 import { PurpleBar } from "./PurpleBar";
+import { PatternListManager } from "./PatternListManager";
 
 interface MainProps {
 	path: String;
@@ -48,12 +49,12 @@ export function Main({ path }:MainProps) {
 			<Filter 
 				filterSchema={schema[0]} 
 				filters={filterBundle.filters}
-				toggleFilter={ toggleFilter }
-				sortSearch={ sortSearch }
+				toggleFilter={toggleFilter}
+				sortSearch={sortSearch}
 			/>
-			<PatternList
-				data={searchResults}
-				filters={filterBundle.filters} 
+			<PatternListManager 
+				searchResults={searchResults}
+				filterBundle={filterBundle}
 				setPage={setPage}
 				page={page}
 			/>
