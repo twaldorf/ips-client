@@ -24,6 +24,7 @@ const App:preact.FunctionComponent = () => {
 	return (
 			<Router>
 				<Main path="/" />
+				<Main path="/category/:category" />
 				<Detail path="/detail/:Image" Image={':Image'}/>
 				<Input path="/input" />
 				<Edit path="/edit/:id" id={":id"} />
