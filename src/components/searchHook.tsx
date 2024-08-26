@@ -3,7 +3,7 @@ import { useState } from "preact/hooks";
 import { apiUrl } from "../config";
 import { ColumnName } from "../types";
 
-export function searchHook() {
+export function searchHook(path='patterns') {
 	const [ searchResults, setSearchResults ] = useState([]);
 	const [schema, setSchema] = useState([]);
 
@@ -17,8 +17,8 @@ export function searchHook() {
 	const fetchData = async ( sort_by?:ColumnName, page:Number=1 ) => {
 		try {
 			const response = !sort_by ? 
-			await axios.get( `${apiUrl}/patterns?page=${page}&?page_length=${page_length}` ) :
-			await axios.get( `${apiUrl}/patterns?SortBy=${sort_by}` );
+			await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
+			await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
 
 			setSearchResults( response.data );
 		} catch ( error ) {

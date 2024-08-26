@@ -86,6 +86,14 @@ a, a:visited {
 	margin: 0;
 }
 
+.DensePatternInfo h3, h4, p {
+	margin: .2rem 0
+}
+
+.DensePatternInfo ul {
+	padding: 0;
+}
+
 table.input-table td, th {
 	padding: 0rem 1rem;
 	border: 1px solid var(--border-soft);
