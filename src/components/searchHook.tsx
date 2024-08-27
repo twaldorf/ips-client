@@ -63,3 +63,22 @@ export function searchHook(path='patterns') {
 		page, setPage,
 	}
 }
+
+export function getSinglePatternHook(path='patterns') {
+	const [ data, setData ] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
+	const fetchData = async ( id ) => {
+		try {
+				const response = await axios.get(`${apiUrl}/${path}/${id}`);
+				setData(response.data);
+		} catch (error) {
+				setError(error);
+		} finally {
+				setLoading(false);
+		}
+	};
+
+	return { fetchData, data, setData, loading, setLoading, error, setError }
+}

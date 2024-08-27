@@ -70,6 +70,7 @@ export function EditPattern(props) {
 
   const handleUpdate = (e) => {
     handleFieldUpdate(e, setFormData, formdata)
+    setData({...data, ...formdata})
   }
 
   if (success) {

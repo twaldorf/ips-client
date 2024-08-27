@@ -22,7 +22,6 @@ export function PenList(props: PenListProps) {
 	var filtered_data;
 
 	// Check if filters are active
-	console.log(filters.length)
 	if ( filters && filters.length > 0 ) {
 		filtered_data = filterData( data, filters );
   } else {
