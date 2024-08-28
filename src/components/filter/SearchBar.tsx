@@ -1,46 +1,66 @@
-import { useState } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 import { Fragment } from "preact/jsx-runtime";
+import { searchContext, SearchContextType } from "../SearchContext";
+import { buttonRefine } from "../../styles/buttons";
+import { FilterRow } from "../FilterRow";
 
-export const SearchBar = () => {
-  const [ tooltip, toggleToolTip ] = useState(false);
-  const [ mousePos, setPos ] = useState({
-    mouseX: '0px',
-    mouseY: '0px'
-  })
+export const SearchBar = ( ) => {
 
-  const handleEnter = e => {
-    if (!tooltip) {
-      setPos({ mouseX: `${e.clientX - 50}px`, mouseY: `${e.clientY}px` });
-    }
-    toggleToolTip(true);
+  const { searchBundle, setSearchBundle } = useContext<SearchContextType>(searchContext);
+
+  var local_query = '';
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchBundle({ ...searchBundle, query: local_query });
   }
 
-  const handleLeave = e => {
-    toggleToolTip(false);
+  const preFetch = (e) => {
+    setTimeout(() => {
+      handleSearch(e);
+    }, 100 * 2);
   }
 
-  const tooltipStyle = {
-    position: 'absolute',
-    left: mousePos.mouseX,
-    top: '-50%',
-    backgroundColor: 'var(--bg-inset)',
-    color: 'var(--primary-text)',
-    padding: '1rem',
-    borderRadius: '6px',
+  const updateFormData = (e) => {
+    local_query = e.target.value;
   }
 
   return (
     <Fragment>
-      { tooltip && 
-        <span style={ tooltipStyle } >Search is currently disabled for testing</span> 
-      }
-      <input 
-      className="searchbar"
-      type="text"
-      placeholder="Search names, categories, garment types, styles..." 
-      disabled={true}
-      onPointerEnter={handleEnter}
-      onPointerLeave={handleLeave}></input>
+      <form onSubmit={handleSearch} style={formStyle}>
+        <input
+              type="text"
+              value={searchBundle.query}
+              onInput={updateFormData}
+              placeholder="Search for pattern styles, uses, fabrics, etc."
+              style={ searchStyle }
+          />
+        <button type="submit" style={searchButton}>Search</button>
+      </form>
     </Fragment>
   );
+}
+
+const searchButton = {
+  ...buttonRefine,
+  backgroundColor: 'var(--accent-text)',
+  color: 'white',
+  border:'none',
+}
+
+const formStyle = {
+  display: 'flex',
+  direction: 'row',
+  width: '70%',
+}
+
+const searchStyle = {
+  width: '100%',
+  padding: '10px',
+  borderRadius: '.2rem',
+  border: '1px solid #ccc',
+  fontSize: '1.2em',
+  margin: '0 10px 0 0',
+  verticalAlign: 'top',
+  boxSizing: 'border-box',
 }

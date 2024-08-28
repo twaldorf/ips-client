@@ -6,3 +6,13 @@ export enum ColumnName {
 	YDG60="Ydg, 60",
 	SIZE="Sizes",
 }
+
+export interface SearchBundle {
+  query: string,
+  filterBundle: Object,
+}
+
+export interface SearchContextType {
+  searchBundle: SearchBundle;
+  setSearchBundle: (Object) => void;
+}

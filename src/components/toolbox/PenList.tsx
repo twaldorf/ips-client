@@ -1,10 +1,11 @@
-import { Pattern } from "./ListPattern";
-import { filterData } from "../utils/filter_utils";
-import { Pages } from "./Pages";
-import { Fragment } from "preact/jsx-runtime";
-import { StubPattern } from "./StubPattern";
+import { Pattern } from "../ListPattern";
+import { filterData } from "../../utils/filter_utils";
+import { Pages } from "../Pages";
+import { Fragment } from "preact";
+import { StubPattern } from "../StubPattern";
+import { DenseListPattern } from "./DenseListPattern";
 
-interface PatternListProps {
+interface PenListProps {
 	data: any;
 	category: string;
 	filters: any;
@@ -13,7 +14,7 @@ interface PatternListProps {
 	limit: number;
 }
 
-export function PatternList(props: PatternListProps) {
+export function PenList(props: PenListProps) {
 
 	const filters = props.filters;
 	const data = props.data;
@@ -21,7 +22,6 @@ export function PatternList(props: PatternListProps) {
 	var filtered_data;
 
 	// Check if filters are active
-	console.log(filters.length)
 	if ( filters && filters.length > 0 ) {
 		filtered_data = filterData( data, filters );
   } else {
@@ -36,8 +36,7 @@ export function PatternList(props: PatternListProps) {
 		<Fragment>
 			<h2 style={h2Style}>{props.category} Patterns</h2>
 			<section style={ listStyle }>
-				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
-				{ props.limit > 0 && <StubPattern category={ props.category }/>}
+				{ filtered_data.map( ( element ) => <DenseListPattern data={ element } /> ) }
 			</section> 
 			<Pages setPage={ props.setPage } page={ props.page } />
 		</Fragment>

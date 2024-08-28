@@ -19,7 +19,6 @@ body {
 	margin: 0;
 	display: flex;
 	align-items: center;
-	min-height: 100vh;
 	padding: var(--body-padding);
 }
 
@@ -42,6 +41,7 @@ section {
 	box-sizing: border-box;
 }
 section.two-column {
+	position: relative;
 	margin: 0;
 	display: grid;
   grid-template-columns: repeat(2, minmax(40%, 1fr));
@@ -84,6 +84,14 @@ a, a:visited {
 .listItemInfo h4 {
 	font-size: 1.4rem;
 	margin: 0;
+}
+
+.DensePatternInfo h3, h4, p {
+	margin: .2rem 0
+}
+
+.DensePatternInfo ul {
+	padding: 0;
 }
 
 table.input-table td, th {

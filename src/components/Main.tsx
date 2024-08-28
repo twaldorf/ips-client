@@ -1,4 +1,5 @@
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useContext } from "preact/hooks";
+import { createContext } from "preact";
 import { Filter } from "./Filter";
 import { Footer } from "./Footer";
 import { PatternList } from "./PatternList";
@@ -11,22 +12,24 @@ import { Lander } from "./Lander";
 import { ListPlaceholder } from "./ListPlaceholder";
 import { PurpleBar } from "./PurpleBar";
 import { PatternListManager } from "./PatternListManager";
+import { SearchProvider } from "./SearchContext";
+import { SearchBundle } from "../types";
 
 interface MainProps {
 	path: String;
 }
 
 export function Main({ path }:MainProps) {
-
 	// Set up search results and filters
 	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
 	const { filterBundle, setFilter, toggleFilter } = filterHook();
+	const [searchBundle, setSearchBundle] = useState<SearchBundle>( { query: '', filterBundle: {}  } );
 
 	// Fetch initial pattern list
 	useEffect(() => {
-		fetchData();
+		fetchData( searchBundle.query );
 		// fetchSchema();
-	}, []); // The empty dependency array ensures that this effect runs only once, equivalent to componentDidMount in class components
+	}, [ searchBundle ]); 
 
 	if (loading) {
 			return (
@@ -44,20 +47,23 @@ export function Main({ path }:MainProps) {
 	return (
 		<div>
 			<PurpleBar />
-			<Title />
-			<Lander />
-			<Filter 
-				filterSchema={schema[0]} 
-				filters={filterBundle.filters}
-				toggleFilter={toggleFilter}
-				sortSearch={sortSearch}
-			/>
-			<PatternListManager 
-				searchResults={searchResults}
-				filterBundle={filterBundle}
-				setPage={setPage}
-				page={page}
-			/>
+			<SearchProvider searchBundle={searchBundle} setSearchBundle={setSearchBundle}>
+				<Title />
+				<Lander />
+				<Filter 
+					filterSchema={schema[0]} 
+					filters={filterBundle.filters}
+					toggleFilter={toggleFilter}
+					sortSearch={sortSearch}
+					fetchData={fetchData}
+				/>
+				<PatternListManager 
+					searchResults={searchResults}
+					filterBundle={filterBundle}
+					setPage={setPage}
+					page={page}
+				/>
+			</SearchProvider>
 			<Footer />
 		</div>
 	);

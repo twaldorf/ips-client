@@ -37,13 +37,13 @@ const head = {
   flexDirection: 'row',
   flexWrap: 'wrap',
   // margin: '0',
-  padding: '3rem 0',
+  padding: '0',
   justifyContent: 'space-between'
 }
 
 const title = {
   textAlign: 'left',
-  fontFamily: 'FitzgeraldBold',
+  // fontFamily: 'FitzgeraldBold',
   fontSize: '48px',
   // margin: 0,
   color: 'var(--primary-text)',

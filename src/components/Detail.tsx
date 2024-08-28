@@ -17,10 +17,6 @@ export function Detail(props:DetailProps) {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-  const getPatternById = async (id) => {
-
-  }
-
   useEffect(() => {
     const fetchData = async () => {
         try {

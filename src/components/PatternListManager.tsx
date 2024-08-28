@@ -1,9 +1,14 @@
 
+import { useContext } from 'preact/hooks';
+import { SearchContextType } from '../types';
 import { PatternList } from './PatternList'; // Import the PatternList component
+import { searchContext } from './SearchContext';
 
 export function PatternListManager( { searchResults, filterBundle, setPage, page } ) {
 	const categories = ["Garment", "Gear", "Decor"];
   const url = window.location.pathname.split('/')[2];
+
+  const { searchBundle } = useContext<SearchContextType>(searchContext);
 
   const matchingCategory = categories.find((c) => url === c);
   

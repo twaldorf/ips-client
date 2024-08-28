@@ -3,7 +3,7 @@ import { useState } from "preact/hooks";
 import { apiUrl } from "../config";
 import { ColumnName } from "../types";
 
-export function searchHook() {
+export function searchHook(path='patterns') {
 	const [ searchResults, setSearchResults ] = useState([]);
 	const [schema, setSchema] = useState([]);
 
@@ -14,13 +14,22 @@ export function searchHook() {
 
 	const page_length = 25;
 
-	const fetchData = async ( sort_by?:ColumnName, page:Number=1 ) => {
-		try {
-			const response = !sort_by ? 
-			await axios.get( `${apiUrl}/patterns?page=${page}&?page_length=${page_length}` ) :
-			await axios.get( `${apiUrl}/patterns?SortBy=${sort_by}` );
+	// const fetchData = async ( searchBundle ) => {
 
-			setSearchResults( response.data );
+	const fetchData = async ( query: string, sort_by?:ColumnName, page:number=1 ) => {
+
+		// refactor this to use only the searchbundle and create the outgoing request piecemeal
+		try {
+
+			if (query.length > 0) {
+				const response = await axios.get( `${apiUrl}/${path}/search?query=${encodeURIComponent(query)}` );
+				setSearchResults( response.data );
+			} else {
+				const response = !sort_by ? 
+				await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
+				await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
+				setSearchResults( response.data );
+			}	
 		} catch ( error ) {
 				setError( error );
 		} finally {
@@ -62,4 +71,23 @@ export function searchHook() {
 		error, setError,
 		page, setPage,
 	}
+}
+
+export function getSinglePatternHook(path='patterns') {
+	const [ data, setData ] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
+	const fetchData = async ( id ) => {
+		try {
+				const response = await axios.get(`${apiUrl}/${path}/${id}`);
+				setData(response.data);
+		} catch (error) {
+				setError(error);
+		} finally {
+				setLoading(false);
+		}
+	};
+
+	return { fetchData, data, setData, loading, setLoading, error, setError }
 }
