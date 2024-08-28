@@ -1,12 +1,13 @@
 import { Link } from 'preact-router';
 import { buttonRefine } from '../../styles/buttons';
 import axios from 'axios';
+import { apiUrl } from '../../config';
 
 export function ComparePatternDetail({ data }) {
   const { title, _id, built_image_file, imageUrl, image_file, url, additional_supplies, ...data_sans_name } = data.parent;
 
   const handleApprovePattern = () => {
-    axios.post(`/approve/${data._id}`)
+    axios.post(`${apiUrl}/approve/${data.pen._id}`)
       .then(response => {
         console.log(response.data);
       })
@@ -15,7 +16,7 @@ export function ComparePatternDetail({ data }) {
       });
   }
   const handleDenyPattern = () => {
-    axios.delete(`/pen/${data._id}`)
+    axios.delete(`${apiUrl}/pen/${data.pen._id}`)
       .then(response => {
         console.log(response.data);
       })

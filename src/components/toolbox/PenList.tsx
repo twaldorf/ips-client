@@ -49,6 +49,6 @@ const listStyle = {
 }
 
 export const h2Style = {
-	fontFamily: 'FitzgeraldBold, serif',
+	// fontFamily: 'FitzgeraldBold, serif',
 	fontSize: '32px'
 }

@@ -14,13 +14,22 @@ export function searchHook(path='patterns') {
 
 	const page_length = 25;
 
-	const fetchData = async ( sort_by?:ColumnName, page:Number=1 ) => {
-		try {
-			const response = !sort_by ? 
-			await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
-			await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
+	// const fetchData = async ( searchBundle ) => {
 
-			setSearchResults( response.data );
+	const fetchData = async ( query: string, sort_by?:ColumnName, page:number=1 ) => {
+
+		// refactor this to use only the searchbundle and create the outgoing request piecemeal
+		try {
+
+			if (query.length > 0) {
+				const response = await axios.get( `${apiUrl}/${path}/search?query=${encodeURIComponent(query)}` );
+				setSearchResults( response.data );
+			} else {
+				const response = !sort_by ? 
+				await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
+				await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
+				setSearchResults( response.data );
+			}	
 		} catch ( error ) {
 				setError( error );
 		} finally {

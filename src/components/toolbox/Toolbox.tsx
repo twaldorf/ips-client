@@ -26,9 +26,9 @@ export function Toolbox({ path }:MainProps) {
 
 	// Fetch initial pattern list
 	useEffect(() => {
-		fetchData();
+		fetchData('');
 		// fetchSchema();
-	}, []); // The empty dependency array ensures that this effect runs only once, equivalent to componentDidMount in class components
+	}, []);
 
 	if (loading) {
 			return (

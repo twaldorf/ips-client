@@ -13,7 +13,6 @@ export function filterData( data, filters ):boolean {
 				const filter_value = filter_pair[ key ];
 
 				var test_result = filter_value == element[ key ];
-				console.log('comparing', key, filter_value);
 
 				// handle array case
 				if ( element[ key ] instanceof Array ) {
