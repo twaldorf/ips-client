@@ -13,6 +13,7 @@ export function PatternListManager( { searchResults, filterBundle, setPage, page
   const matchingCategory = categories.find((c) => url === c);
   
   if (matchingCategory) {
+    console.log('category match')
     return <PatternList category={matchingCategory} 
       data={searchResults}
       filters={ [ ...filterBundle.filters, {category: [matchingCategory]} ] } 
@@ -20,6 +21,8 @@ export function PatternListManager( { searchResults, filterBundle, setPage, page
       page={page}
       limit={0}/>
   }
+
+  console.log('no category match')
 
 	return (
 		<>

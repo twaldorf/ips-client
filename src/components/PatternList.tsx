@@ -21,17 +21,20 @@ export function PatternList(props: PatternListProps) {
 	var filtered_data;
 
 	// Check if filters are active
-	console.log(filters.length)
+	console.log(filters)
 	if ( filters && filters.length > 0 ) {
 		filtered_data = filterData( data, filters );
   } else {
 		filtered_data = data;
 	}
 
+	console.log('filtered data: ', filtered_data)
+	
 	if (props.limit > 0) {
 		filtered_data = filtered_data.slice(0, props.limit);
 	}
 	
+	console.log('filtered data: ', filtered_data)
 	return (
 		<Fragment>
 			<h2 style={h2Style}>{props.category} Patterns</h2>
