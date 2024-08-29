@@ -1,3 +1,4 @@
+import "preact/debug";
 import { ComponentProps, h, render } from 'preact';
 import Router, { Route } from 'preact-router';
 
