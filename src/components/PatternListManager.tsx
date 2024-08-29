@@ -16,7 +16,7 @@ export function PatternListManager( { searchResults, filterBundle, setPage, page
     console.log('category match')
     return <PatternList category={matchingCategory} 
       data={searchResults}
-      filters={ [ ...filterBundle.filters, {category: [matchingCategory]} ] } 
+      filters={ [ ...filterBundle.filters, {category: matchingCategory} ] } 
       setPage={setPage}
       page={page}
       limit={0}/>
@@ -29,7 +29,7 @@ export function PatternListManager( { searchResults, filterBundle, setPage, page
 			{categories.map((category) => (
 				<PatternList key={category} category={category} 
         data={searchResults}
-				filters={ [ ...filterBundle.filters, {category: [category]} ] } 
+				filters={ [ ...filterBundle.filters, {category: category} ] } 
 				setPage={setPage}
 				page={page}
         limit={5}/>

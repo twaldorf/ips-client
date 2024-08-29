@@ -14,6 +14,8 @@ export function filterData( data, filters ):boolean {
 
 				var test_result = filter_value == element[ key ];
 
+				console.log('comparing', filter_value, element[ key ], test_result)
+
 				// handle array case
 				if ( element[ key ] instanceof Array ) {
 					test_result = element[ key ].some( item_value => item_value == filter_value );
