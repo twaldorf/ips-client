@@ -4,7 +4,6 @@ import axios from 'axios';
 import { apiUrl } from '../../config';
 
 export function ComparePatternDetail({ data }) {
-  const { title, _id, built_image_file, imageUrl, image_file, url, additional_supplies, ...data_sans_name } = data.parent;
 
   const handleApprovePattern = () => {
     axios.post(`${apiUrl}/approve/${data.pen._id}`)
@@ -38,17 +37,21 @@ export function ComparePatternDetail({ data }) {
 
       <section className={"two-column"}>
         <div style={colStyle}>
-        { Object.keys(data.parent).map((key, index) => {
-            return <pre style={preStyle}>{key}: {JSON.stringify(data.parent[key], null, 2)}</pre>
-          })}
+        { 'parent' in data &&
+          Object.keys(data.parent).map((key, index) => {
+              return <pre style={preStyle}>{key}: {JSON.stringify(data.parent[key], null, 2)}</pre>
+            })
+        }
         </div>
         <div style={colStyle}>
           { Object.keys(data.pen).map((key, index) => {
-            if (key != 'id_to_replace') {
+            if (key != 'id_to_replace' && data.parent) {
               return JSON.stringify(data.pen[key]) == JSON.stringify(data.parent[key]) ? 
                 <pre style={preStyle}>{key}: {JSON.stringify(data.pen[key], null, 2)}</pre> : 
-                <pre style={preDifStyle}>{key}: {JSON.stringify(data.pen[key], null, 2)}</pre>
-            }
+                <pre style={preDifStyle}>{key}: {JSON.stringify(data.pen[key], null, 2)}</pre>;
+            } else {
+              return <pre style={preStyle}>{key}: {JSON.stringify(data.pen[key], null, 2)}</pre>; 
+            };
           })}
         </div>
         <button onClick={handleApprovePattern}>Approve change</button>

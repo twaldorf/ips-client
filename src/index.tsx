@@ -30,7 +30,7 @@ const App:preact.FunctionComponent = () => {
 				<Main path="/category/:category" />
 				<Toolbox path="/toolbox" />
 				<Detail path="/detail/:Image" Image={':Image'}/>
-				<CompareDetail path="/pen/detail/:Image" Image={':Image'} />
+				<CompareDetail path="/pen/detail/:_id" _id={':_id'} />
 				<Input path="/input" />
 				<Edit path="/edit/:id" id={":id"} />
 				{/* <Suggestions path="/suggestions" /> */}

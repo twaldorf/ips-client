@@ -6,8 +6,8 @@ import { apiUrl } from "../../config";
 import { ComparePatternDetail } from "./ComparePatternDetail"; // Import the ComparePattern component
 
 interface DetailProps {
-  Image: String;
-  path: String;
+  path: string;
+  _id: string;
   // url: String;
 }
 
@@ -20,10 +20,15 @@ export function CompareDetail(props:DetailProps) {
   useEffect(() => {
     const fetchData = async () => {
         try {
-          const response = await axios.get(`${apiUrl}/pen/pattern/${props.Image}`);
-          const response2 = await axios.get(`${apiUrl}/pattern/${response.data.id_to_replace}`);
-          const bundle = [{pen: response.data, parent: response2.data}];
-          setData(bundle);
+          const response = await axios.get(`${apiUrl}/pen/pattern/${props._id}`);
+          if (response.data.id_to_replace) {
+            const response2 = await axios.get(`${apiUrl}/pattern/${response.data.id_to_replace}`);
+            const bundle = [{pen: response.data, parent: response2.data}];
+            setData(bundle);
+          } else {
+            setData([{pen: response.data}]);
+          }
+          
         } catch (error) {
             setError(error);
         } finally {

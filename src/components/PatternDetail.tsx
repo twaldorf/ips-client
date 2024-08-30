@@ -81,8 +81,9 @@ export function Pattern({ data }) {
               return renderRecursiveTable(key, data[key], 0)
             }) }
           </table>
-          
-          <a href={`/edit/${data._id}`}><button style={editButton} onClick={handleEditPattern}>Edit pattern</button></a>
+          { data._id && 
+            <a href={`/edit/${data._id}`}><button style={editButton} onClick={handleEditPattern}>Edit pattern</button></a>
+          } 
         </div>
       </section>
     </div>

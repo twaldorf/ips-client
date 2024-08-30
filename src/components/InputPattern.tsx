@@ -104,6 +104,10 @@ To respect the intellectual property rights of the pattern creators please only 
                 <td><input type="text" name="name" onInput={handleUpdate} /></td>
             </tr>
             <tr style={row}>
+                <th><label htmlFor="url">Pattern URL</label></th>
+                <td><input type="text" name="url" onInput={handleUpdate} /></td>
+            </tr>
+            <tr style={row}>
                 <th><label htmlFor="category">Category</label></th>
                 <td>
                   <select name="category" onChange={handleUpdate}>
