@@ -10,7 +10,8 @@ export function ListPatternInfo(props) {
 					<li>
             <div style={subitem}>
               <li>{props.format}</li>
-              <li>{props.price}</li>
+              {/* TODO: support for denomination switch */}
+              <li>${props.price}</li>
             </div>
           </li>
 					<li>

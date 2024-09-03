@@ -101,7 +101,7 @@ To respect the intellectual property rights of the pattern creators please only 
           <table style={table} className="input-table">
             <tr style={row}>
                 <th><label htmlFor="name">Pattern Name</label></th>
-                <td><input type="text" name="name" onInput={handleUpdate} /></td>
+                <td><input type="text" name="title" onInput={handleUpdate} /></td>
             </tr>
             <tr style={row}>
                 <th><label htmlFor="url">Pattern URL</label></th>

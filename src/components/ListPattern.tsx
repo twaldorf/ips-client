@@ -11,8 +11,12 @@ export function Pattern(props) {
 		<Link href={`/detail/${props.data._id}`} >
 			<div>
 				<Bullet rank={props.data.id} />
-				<div style={ props.data.imageUrl && { backgroundImage: `url(${s3Url}/${props.data.built_image_file})`, ...listPatternStyle } }>
+				<div style={ props.data.imageUrl ? 
+				{ backgroundImage: `url(${s3Url}/${props.data.built_image_file})`, ...listPatternStyle } :
+				{ backgroundImage: `url(${s3Url}/dps_placeholder.png`, ...listPatternStyle }
+			 }>
 					<ListPatternInfo  
+					// TODO: do not mutate this data
 						name={props.data.title}
 						author={props.data.designer}
 						price={props.data.price}
