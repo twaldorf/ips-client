@@ -13,6 +13,7 @@ import { PurpleBar } from ".././PurpleBar";
 import { PatternListManager } from ".././PatternListManager";
 import { Pattern } from "../ListPattern";
 import { PenList } from "./PenList";
+import { PatternTable } from "./PatternTable";
 
 interface MainProps {
 	path: String;
@@ -22,11 +23,13 @@ export function Toolbox({ path }:MainProps) {
 
 	// Set up search results and filters
 	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook('pen');
+	const { fetchData: fetchPatternData, loading: patternLoading, error: patternError, searchResults: allPatternResults } = searchHook();
 	const { filterBundle, setFilter, toggleFilter } = filterHook();
 
 	// Fetch initial pattern list
 	useEffect(() => {
 		fetchData('');
+		fetchPatternData('');
 		// fetchSchema();
 	}, []);
 
@@ -47,6 +50,7 @@ export function Toolbox({ path }:MainProps) {
 		<div>
 			<Title />
 	    <PenList data={searchResults} filters={filterBundle} category="" page={0} setPage={setPage} limit={0} />
+			<PatternTable data={allPatternResults} />
 			<Footer />
 		</div>
 	);
