@@ -11,5 +11,5 @@ export const Lander = () => {
 const separator = {
   textAlign: 'left',
   fontSize: '1.2rem',
-  margin: '0 0 2rem 0'
+  margin: '0'
 }

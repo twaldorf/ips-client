@@ -25,9 +25,9 @@ export function Filter(props) {
 		<div style={ filterContainer }>
 			<h4>Filters</h4>
 			<div style={ filterTopRow } className="flex-row-to-col">
-				<button disabled={true} style={ buttonToggleDisabled } onClick={ toggleVisibility }> Filter </button>
+				{/* <button disabled={true} style={ buttonToggleDisabled } onClick={ toggleVisibility }> Filter </button> */}
 				<SearchBar />
-				<button style={ buttonRefine } onClick={ toggleSortVisibility } id={"button-sort"}>Sort By</button>
+				{/* <button style={ buttonRefine } onClick={ toggleSortVisibility } id={"button-sort"}>Sort By</button> */}
 
 				{
 					sortVisible &&
@@ -48,9 +48,10 @@ const filterTopRow = {
 	margin: '0 0 20px 0',
 	position: 'relative',
 	flexWrap: 'true',
+	gap: '1rem',
 }
 
 const filterContainer = {
 	textAlign: 'left',
-	margin: '6rem 0 4rem 0',
+	margin: '4rem 0 4rem 0',
 }

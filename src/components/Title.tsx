@@ -30,6 +30,7 @@ const nav = {
   justifyContent: 'space-between',
   minWidth: '140px',
   alignItems: 'center',
+  gap: '1rem',
 }
 
 const head = {

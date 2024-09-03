@@ -51,7 +51,7 @@ const searchButton = {
 const formStyle = {
   display: 'flex',
   direction: 'row',
-  width: '70%',
+  width: '100%',
 }
 
 const searchStyle = {

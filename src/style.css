@@ -139,12 +139,16 @@ footer {
 	.flex-row-to-col {
 		flex-direction: column;
 	}
+	.hide-on-mobile {
+		display: none;
+	}
 
 	header {
 		margin-top: 1rem;
 	}
 	nav {
-		margin: auto;
+		margin: 1rem auto;
+		width: 100%;
 	}
 	footer {
 		grid-template-columns: 1fr;
