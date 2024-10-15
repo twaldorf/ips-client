@@ -1,0 +1,17 @@
+/* general utility */
+.grid {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+}
+
+.multifill {
+	display: flex;
+	flex-direction: row;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}

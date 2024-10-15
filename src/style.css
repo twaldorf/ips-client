@@ -94,28 +94,6 @@ a, a:visited {
 	padding: 0;
 }
 
-table.input-table td, th {
-	padding: 0rem 1rem;
-	border: 1px solid var(--border-soft);
-	background-color: var(--bg-soft);
-	font-weight: normal;
-}
-
-input, textarea, select {
-  border: none;
-  outline: none;
-  background: none;
-  font-size: inherit;
-  padding: 0;
-  margin: 1rem 0;
-  border-bottom: 1px solid var(--primary-text); /* Black underline */
-  color: var(--primary-text); /* Text color */
-}
-
-footer {
-	gridTemplateColumns: 'minmax(20px, auto) 1fr 1fr',
-}
-
 @media (max-width: 839px) {
 	body {
 		--solo-col-width: 220px;

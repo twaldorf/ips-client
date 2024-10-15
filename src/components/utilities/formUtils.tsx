@@ -3,7 +3,7 @@ export const handleFieldUpdate = (e, setFormData, form_data) => {
   const key = elt.name;
   const value = elt.value;
   // handle textbox
-  elt.style.height = elt.scrollHeight + 'px';
+  // elt.style.height = elt.scrollHeight + 'px';
   setFormData(prev => ({
     ...form_data,
     [ key ]: value,

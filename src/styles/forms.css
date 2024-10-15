@@ -1,0 +1,78 @@
+
+/* move to table file  */
+table.input-table {
+	width:100%;
+  border-collapse: separate;
+  border-spacing: 0 2rem;
+}
+
+table.input-table td, th {
+	background-color: var(--bg-soft);
+	font-weight: normal;
+	height: auto;
+}
+
+table.input-table input {
+	border-radius: 4px;
+	padding: .2rem;
+	border: 1px solid #ededed;
+	width: 100%;
+}
+
+table.input-table td.size-group {
+	gap: 0rem 2rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+}
+
+table.input-table td.size-group input {
+	height: 1rem;
+	width: 1rem;
+	margin-right: .4rem
+}
+
+table.input-table td > * {
+  margin-bottom: 1rem;
+}
+
+table.input-table .multifill > input {
+	width: 3rem;
+}
+
+table.input-table td.format-group div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+}
+
+table.input-table .thin-input {
+  margin: .2rem 0;
+}
+
+table.input-table tr th {
+  vertical-align: top;
+}
+
+form button.form-button {
+  float: right;
+  margin: 2rem 0 1rem 0;
+}
+
+input, textarea, select {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: inherit;
+  padding: 0;
+  /* margin: 1rem 0; */
+  border: 1px solid #ededed;
+	border-radius: 4px;
+  color: var(--primary-text); /* Text color */
+}
+
+textarea {
+	width: 100%;
+	min-height: 4rem;
+	padding: .4rem;
+}
