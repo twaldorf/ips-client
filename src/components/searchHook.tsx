@@ -12,29 +12,47 @@ export function searchHook(path='patterns') {
 
 	const [ page, setPage ] = useState( 1 );
 
-	const page_length = 25;
+	const page_length = 55;
 
-	// const fetchData = async ( searchBundle ) => {
+	const fetchData = async ( searchBundle ) => {
+		const { query, sort_by, page_number, filterBundle } = searchBundle
+		console.log('search bundle: ', searchBundle)
 
-	const fetchData = async ( query: string, sort_by?:ColumnName, page:number=1 ) => {
+		let request = `${apiUrl}/${path}`
+		// is there a search query?
+		if (query && query.length > 0) request = query ? request + `/search?query=${encodeURIComponent(query)}` : request
+		// are there filters we can include? maybe this should be after the search query?? how will it be able to parse these apart?
+		if (filterBundle) {
+			Object.keys(filterBundle).map(filterkey => {
+				const criterion = filterBundle[filterkey]
+				if (criterion) request += `?filter=${encodeURIComponent(criterion)}`;
+			})
+		}
+
+		await fetchDataOld(request)
+	}
+
+	const fetchDataOld = async ( request:string ) => {
+		console.log('attempting to query request: ', request)
 
 		// refactor this to use only the searchbundle and create the outgoing request piecemeal
 		try {
 
-			if (query.length > 0) {
-				const response = await axios.get( `${apiUrl}/${path}/search?query=${encodeURIComponent(query)}` );
-				setSearchResults( response.data );
-			} else {
-				const response = !sort_by ? 
-				await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
-				await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
-				setSearchResults( response.data );
-			}	
+			// if (query.length > 0) {
+			// 	const response = await axios.get( `${apiUrl}/${path}/search?query=${encodeURIComponent(query)}` );
+			// 	setSearchResults( response.data );
+			// } else {
+				// const response = !sort_by ? 
+				// await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
+				// await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
+				const response = await axios.get(request)
+				console.log(response)
+				setSearchResults( response.data.data );
+			// }	
 		} catch ( error ) {
-				setError( error );
+			setError( error );
 		} finally {
-			console.log('done')
-				setLoading(false);
+			setLoading(false);
 		}
 	};
 	

@@ -12,20 +12,22 @@ import { Lander } from "./Lander";
 import { ListPlaceholder } from "./ListPlaceholder";
 import { PurpleBar } from "./PurpleBar";
 import { PatternListManager } from "./PatternListManager";
-import { categories, SearchBundle } from "../types";
+import { SearchProvider } from "./SearchContext";
+import { SearchBundle } from "../types";
 
-interface MainProps {
-	path: String;
-}
 
-export function Main({ path }:MainProps) {
+export function Search({ category }) {
+	console.log(category)
 	// Set up search results and filters
 	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
+	const { filterBundle, setFilter, toggleFilter } = filterHook();
+	const [searchBundle, setSearchBundle] = useState<SearchBundle>( { query: '', filterBundle: {}  } );
 
 	// Fetch initial pattern list
 	useEffect(() => {
-		fetchData({});
-	}, []); 
+		fetchData( searchBundle );
+		// fetchSchema();
+	}, [ searchBundle ]); 
 
 	if (loading) {
 			return (
@@ -43,16 +45,22 @@ export function Main({ path }:MainProps) {
 	return (
 		<div>
 			<PurpleBar />
+			<SearchProvider searchBundle={searchBundle} setSearchBundle={setSearchBundle}>
 				<Title />
-				<Lander />
-				{categories.map((category) => (
-					<PatternList key={category} category={category} 
-	        data={searchResults}
-					filters={ { category: category } } 
+				<Filter 
+					filterSchema={schema[0]}
+					filters={filterBundle}
+					toggleFilter={toggleFilter}
+					sortSearch={sortSearch}
+					fetchData={fetchData}
+				/>
+				<PatternListManager 
+					searchResults={searchResults}
+					filterBundle={filterBundle}
 					setPage={setPage}
 					page={page}
-	        limit={5}/>
-				))}
+				/>
+			</SearchProvider>
 			<Footer />
 		</div>
 	);

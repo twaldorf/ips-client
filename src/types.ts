@@ -7,12 +7,20 @@ export enum ColumnName {
 	SIZE="Sizes",
 }
 
+export const categories = ["Garment", "Gear", "Decor"];
+
 export interface SearchBundle {
   query: string,
-  filterBundle: Object,
+  filterBundle: FilterBundle,
 }
 
 export interface SearchContextType {
   searchBundle: SearchBundle;
   setSearchBundle: (Object) => void;
+}
+
+export interface FilterBundle {
+	category?: "Garment", "Gear", "Decor", "Plushie";
+	sort_by?: "Price";
+	style_tags?: Array<string>;
 }

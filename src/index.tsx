@@ -24,12 +24,14 @@ import Edit from './components/Edit';
 import { Suggestions } from './components/Suggestions';
 import { Toolbox } from './components/toolbox/Toolbox';
 import { CompareDetail } from './components/toolbox/CompareDetail';
+import { Search } from "./components/Search";
 
 const App:preact.FunctionComponent = () => {
 	return (
 			<Router>
 				<Main path="/" />
-				<Main path="/category/:category" />
+				<Search path="/search/:term" />
+				<Search path="/category/:category" />
 				<Toolbox path="/toolbox" />
 				<Detail path="/detail/:Image" Image={':Image'}/>
 				<CompareDetail path="/pen/detail/:_id" _id={':_id'} />

@@ -1,4 +1,4 @@
-export const Pages = ( { page, setPage } ) => {
+export const Pages = ( { page, setPage, count } ) => {
 
   const handlePrev = () => {
     if ( page > 1 ) {
@@ -10,8 +10,9 @@ export const Pages = ( { page, setPage } ) => {
     setPage( page + 1 );
   }
 
-  const setPageTo = (e:Event) => {
-  // TODO: page browsing behavior
+  const setPageTo = (e) => {
+    const n = parseInt(e.target.textContent);
+    setPage(n);
   }
 
   const page_numbers = Array.from( Array( page ).keys() );
