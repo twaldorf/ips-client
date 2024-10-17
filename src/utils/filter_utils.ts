@@ -1,13 +1,17 @@
 export function filterData( data:Array<Object>, filters ) {
 	const patterns = data;
-	const filtered_data = patterns.filter((pattern, pindex, patterns) => {
-		let accum = true;
-		Object.keys(filters).map((filterkey, filterindex, filterkeys) => {
-			accum = accum && pattern[filterkey] == filters[filterkey];
+	if (patterns) {
+		const filtered_data = patterns.filter((pattern, pindex, patterns) => {
+			let accum = true;
+			Object.keys(filters).map((filterkey, filterindex, filterkeys) => {
+				accum = accum && pattern[filterkey] == filters[filterkey];
+			})
+			return accum;
 		})
-		return accum;
-	})
-	return filtered_data;
+		return filtered_data;
+	} else {
+		return null;
+	}
 		// const filtered_data = data.filter( ( element ) => {
 		// 	var status = true;
 
