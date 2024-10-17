@@ -19,6 +19,7 @@ interface MainProps {
 }
 
 export function Main({ path }:MainProps) {
+	console.log('init Main')
 	// Set up search results and filters
 	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
 

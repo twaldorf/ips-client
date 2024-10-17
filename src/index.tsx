@@ -25,19 +25,24 @@ import { Suggestions } from './components/Suggestions';
 import { Toolbox } from './components/toolbox/Toolbox';
 import { CompareDetail } from './components/toolbox/CompareDetail';
 import { Search } from "./components/Search";
+import { SearchProvider } from "./components/SearchContext";
+import { SearchBundle } from "./types";
 
 const App:preact.FunctionComponent = () => {
+
 	return (
-			<Router>
-				<Main path="/" />
-				<Search path="/search/:term" />
-				<Search path="/category/:category" />
-				<Toolbox path="/toolbox" />
-				<Detail path="/detail/:Image" Image={':Image'}/>
-				<CompareDetail path="/pen/detail/:_id" _id={':_id'} />
-				<Input path="/input" />
-				<Edit path="/edit/:id" id={":id"} />
-				{/* <Suggestions path="/suggestions" /> */}
+		<Router>
+				
+					<Main path="/" />
+					<Search path="/search/:term" />
+					<Search path="/category/:category" />
+					<Toolbox path="/toolbox" />
+					<Detail path="/detail/:Image" Image={':Image'}/>
+					<CompareDetail path="/pen/detail/:_id" _id={':_id'} />
+					<Input path="/input" />
+					<Edit path="/edit/:id" id={":id"} />
+					<Suggestions path="/suggestions" />
+				
 			</Router>
 	)
 }

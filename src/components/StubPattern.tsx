@@ -7,14 +7,17 @@ import { searchContext } from "./SearchContext";
 
 export function StubPattern({ category }) {
 	// const { searchBundle, setSearchBundle } = useContext(searchContext);
-
+	
+  // const { searchBundle } = useContext<SearchContextType>(searchContext);
+	console.log(useContext(searchContext))
 	const setCategory = (e) => {
 		// const bundle = searchBundle;
 		// console.log(bundle)
 		// bundle.filterBundle.category = category;
 		// setSearchBundle( bundle )
 	}
-
+	
+	
 	return (
 		<Link href={`/category/${category}`}>
 			<div style={stubStyle} className="link" onClick={setCategory} role="link" aria-label={`Link to all patterns of category: ${category}`}>

@@ -3,6 +3,9 @@ import { filterData } from "../utils/filter_utils";
 import { Pages } from "./Pages";
 import { Fragment } from "preact/jsx-runtime";
 import { StubPattern } from "./StubPattern";
+import { useContext } from "preact/hooks";
+import { SearchContextType } from "../types";
+import { searchContext } from "./SearchContext";
 
 interface PatternListProps {
 	data: any;
@@ -14,6 +17,8 @@ interface PatternListProps {
 }
 
 export function PatternList(props: PatternListProps) {
+
+	console.log(useContext(searchContext))
 
 	const filters = props.filters;
 	const data = props.data;
@@ -30,15 +35,17 @@ export function PatternList(props: PatternListProps) {
 	if (props.limit > 0) {
 		filtered_data = filtered_data.slice(0, props.limit);
 	}
+
+	
 	
 	return (
 		<Fragment>
 			<h2 style={h2Style}>{props.category} Patterns</h2>
 			<section style={ listStyle }>
 				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
-				{ props.limit > 0 && <StubPattern category={ props.category }/>}
+				{ props.limit > 0 && props.limit <= 10 && <StubPattern category={ props.category }/>}
 			</section> 
-			<Pages setPage={ props.setPage } page={ props.page } />
+			{/* <Pages setPage={ props.setPage } page={ props.page } /> */}
 		</Fragment>
 	);
 }

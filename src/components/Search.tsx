@@ -12,7 +12,7 @@ import { Lander } from "./Lander";
 import { ListPlaceholder } from "./ListPlaceholder";
 import { PurpleBar } from "./PurpleBar";
 import { PatternListManager } from "./PatternListManager";
-import { SearchProvider } from "./SearchContext";
+import { searchContext, SearchProvider } from "./SearchContext";
 import { SearchBundle } from "../types";
 
 
@@ -20,8 +20,13 @@ export function Search({ category }) {
 	console.log(category)
 	// Set up search results and filters
 	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
-	const { filterBundle, setFilter, toggleFilter } = filterHook();
-	const [searchBundle, setSearchBundle] = useState<SearchBundle>( { query: '', filterBundle: {}  } );
+	const { filterBundle, setFilter } = filterHook();
+
+	const category_placeholder = category ? category : undefined;
+
+	const [searchBundle, setSearchBundle] = useState<SearchBundle>( { query: '', filterBundle: { category: category_placeholder }  } );
+	
+	// const { searchBundle } = useContext(searchContext);
 
 	// Fetch initial pattern list
 	useEffect(() => {
@@ -50,13 +55,11 @@ export function Search({ category }) {
 				<Filter 
 					filterSchema={schema[0]}
 					filters={filterBundle}
-					toggleFilter={toggleFilter}
 					sortSearch={sortSearch}
 					fetchData={fetchData}
 				/>
 				<PatternListManager 
 					searchResults={searchResults}
-					filterBundle={filterBundle}
 					setPage={setPage}
 					page={page}
 				/>

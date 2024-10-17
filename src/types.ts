@@ -20,7 +20,7 @@ export interface SearchContextType {
 }
 
 export interface FilterBundle {
-	category?: "Garment", "Gear", "Decor", "Plushie";
+	category?: "Garment" | "Gear" | "Decor" | "Plushie";
 	sort_by?: "Price";
 	style_tags?: Array<string>;
 }
