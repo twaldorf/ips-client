@@ -6,6 +6,7 @@ import { StubPattern } from "./StubPattern";
 import { useContext } from "preact/hooks";
 import { SearchContextType } from "../types";
 import { searchContext } from "./SearchContext";
+import { ErrorText } from "./ui-utilities/Error";
 
 interface PatternListProps {
 	data: any;
@@ -22,6 +23,10 @@ export function PatternList(props: PatternListProps) {
 	const filters = props.filters;
 	const data = props.data;
 	const metadata = props.metadata;
+
+	if (!data) {
+		return <ErrorText message={ "No pattern data found." }></ErrorText>
+	}
 
 	var filtered_data;
 

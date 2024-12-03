@@ -26,8 +26,8 @@ export function Main({ path }:MainProps) {
 	// Fetch initial pattern list
 	useEffect(() => {
 		fetchData({});
-		// RE-RENDERING: put things into the below array to watch them for re-rendering
-	}, []); 
+		// RE-RENDERING: put things into the below array to watch them for re-rendering at the top of the hierarchy
+	}, [ searchResults ]); 
 
 	if (loading) {
 			return (

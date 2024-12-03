@@ -48,22 +48,11 @@ export function searchHook(path='patterns') {
 
 	const fetchDataOld = async ( request:string ) => {
 		console.log('attempting to query request: ', request);
-
-		// refactor this to use only the searchbundle and create the outgoing request piecemeal
 		try {
-
-			// if (query.length > 0) {
-			// 	const response = await axios.get( `${apiUrl}/${path}/search?query=${encodeURIComponent(query)}` );
-			// 	setSearchResults( response.data );
-			// } else {
-				// const response = !sort_by ? 
-				// await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
-				// await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
 				const response = await axios.get(request);
 				console.log(response)
 				setSearchResults( response.data.data );
 				setMetadata( response.data.metadata );
-			// }	
 		} catch ( error ) {
 			setError( error );
 		} finally {
