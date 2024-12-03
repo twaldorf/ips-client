@@ -69,7 +69,9 @@ export function Pattern({ data }) {
 
       <section className={"two-column"}>
         <div style={colStyle}>
-          <img style={img} src={`${s3Url}/${data.built_image_file}`} alt="" />
+          { data.built_image_file ?
+            <img style={img} src={`${s3Url}/${data.built_image_file}`} alt="" /> 
+            : <img style={img} src={`${s3Url}/${data.image_name}`} alt="" />}
         </div>
         <div style={colStyle}>
           <div style={noteBubble}>

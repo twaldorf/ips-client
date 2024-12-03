@@ -12,16 +12,16 @@ interface PatternListProps {
 	category: string;
 	filters: any;
 	page: number;
-	setPage: any;
+	setPage: Function;
 	limit: number;
+	metadata: unknown;
 }
 
 export function PatternList(props: PatternListProps) {
 
-	console.log(useContext(searchContext))
-
 	const filters = props.filters;
 	const data = props.data;
+	const metadata = props.metadata;
 
 	var filtered_data;
 
@@ -36,8 +36,10 @@ export function PatternList(props: PatternListProps) {
 		filtered_data = filtered_data.slice(0, props.limit);
 	}
 
-	
-	
+	console.log(metadata)
+
+	const numpatterns = metadata.total_patterns
+
 	return (
 		<Fragment>
 			<h2 style={h2Style}>{props.category} Patterns</h2>
@@ -45,7 +47,7 @@ export function PatternList(props: PatternListProps) {
 				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
 				{ props.limit > 0 && props.limit <= 10 && <StubPattern category={ props.category }/>}
 			</section> 
-			{/* <Pages setPage={ props.setPage } page={ props.page } /> */}
+			<Pages setPage={ props.setPage } page={ props.page } count={ numpatterns } />
 		</Fragment>
 	);
 }

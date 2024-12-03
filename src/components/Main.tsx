@@ -21,11 +21,12 @@ interface MainProps {
 export function Main({ path }:MainProps) {
 	console.log('init Main')
 	// Set up search results and filters
-	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
+	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage, metadata } = searchHook();
 
 	// Fetch initial pattern list
 	useEffect(() => {
 		fetchData({});
+		// RE-RENDERING: put things into the below array to watch them for re-rendering
 	}, []); 
 
 	if (loading) {
@@ -52,6 +53,7 @@ export function Main({ path }:MainProps) {
 					filters={ { category: category } } 
 					setPage={setPage}
 					page={page}
+					metadata={metadata}
 	        limit={5}/>
 				))}
 			<Footer />

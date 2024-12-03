@@ -12,28 +12,42 @@ export function searchHook(path='patterns') {
 
 	const [ page, setPage ] = useState( 1 );
 
+	const [ metadata, setMetadata ] = useState({});
+
 	const page_length = 55;
+
+	const encodeArgumentsIntoURL = (request: string, argument: string, value:string):string => {
+		let r = request;
+		if (request.includes('?')) {
+			r += `&${argument}=${encodeURIComponent(value)}`
+		} else {
+			r += `?${argument}=${encodeURIComponent(value)}`
+		}
+		return r;
+	}
 
 	const fetchData = async ( searchBundle ) => {
 		const { query, sort_by, page_number, filterBundle } = searchBundle
 		console.log('search bundle: ', searchBundle)
 
-		let request = `${apiUrl}/${path}`
+		let request = `${apiUrl}/${path}`;
 		// is there a search query?
-		if (query && query.length > 0) request = query ? request + `/search?query=${encodeURIComponent(query)}` : request
+		if (query && query.length > 0) request = query ? request + `/search?query=${encodeURIComponent(query)}` : request;
 		// are there filters we can include? maybe this should be after the search query?? how will it be able to parse these apart?
 		if (filterBundle) {
 			Object.keys(filterBundle).map(filterkey => {
-				const criterion = filterBundle[filterkey]
-				if (criterion) request += `?filter=${encodeURIComponent(criterion)}`;
+				const criterion = filterBundle[filterkey];
+				if (criterion) request = encodeArgumentsIntoURL(request, 'filter', criterion);
 			})
 		}
 
-		await fetchDataOld(request)
+		if (page) request = encodeArgumentsIntoURL(request, 'page', page.toString());
+
+		await fetchDataOld(request);
 	}
 
 	const fetchDataOld = async ( request:string ) => {
-		console.log('attempting to query request: ', request)
+		console.log('attempting to query request: ', request);
 
 		// refactor this to use only the searchbundle and create the outgoing request piecemeal
 		try {
@@ -45,9 +59,10 @@ export function searchHook(path='patterns') {
 				// const response = !sort_by ? 
 				// await axios.get( `${apiUrl}/${path}?page=${page}&?page_length=${page_length}` ) :
 				// await axios.get( `${apiUrl}/${path}SortBy=${sort_by}` );
-				const response = await axios.get(request)
+				const response = await axios.get(request);
 				console.log(response)
 				setSearchResults( response.data.data );
+				setMetadata( response.data.metadata );
 			// }	
 		} catch ( error ) {
 			setError( error );
@@ -88,6 +103,7 @@ export function searchHook(path='patterns') {
 		loading, setLoading, 
 		error, setError,
 		page, setPage,
+		metadata
 	}
 }
 

@@ -19,7 +19,7 @@ import { SearchBundle } from "../types";
 export function Search({ category }) {
 	console.log(category)
 	// Set up search results and filters
-	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage } = searchHook();
+	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage, metadata } = searchHook();
 	const { filterBundle, setFilter } = filterHook();
 
 	const category_placeholder = category ? category : undefined;
@@ -32,7 +32,7 @@ export function Search({ category }) {
 	useEffect(() => {
 		fetchData( searchBundle );
 		// fetchSchema();
-	}, [ searchBundle ]); 
+	}, [ searchBundle, page ]); // watch the search bundle, page number for re-rendering
 
 	if (loading) {
 			return (
@@ -62,6 +62,7 @@ export function Search({ category }) {
 					searchResults={searchResults}
 					setPage={setPage}
 					page={page}
+					metadata={metadata}
 				/>
 			</SearchProvider>
 			<Footer />

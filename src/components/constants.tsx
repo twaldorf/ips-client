@@ -1,0 +1,1 @@
+export const patterns_per_page = 55;

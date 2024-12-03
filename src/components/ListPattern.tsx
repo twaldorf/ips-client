@@ -7,12 +7,15 @@ import placeholderImgUrl from '../assets/placeholder.png'
 import { Link } from "preact-router"
 
 export function Pattern(props) {
+	
+	const image = props.data.built_image_file ? props.data.built_image_file : props.data.image_name;
+
 	return (
 		<Link href={`/detail/${props.data._id}`} >
 			<div>
 				<Bullet rank={props.data.id} />
-				<div style={ props.data.imageUrl ? 
-				{ backgroundImage: `url(${s3Url}/${props.data.built_image_file})`, ...listPatternStyle } :
+				<div style={ image ? 
+				{ backgroundImage: `url(${s3Url}/${image})`, ...listPatternStyle } :
 				{ backgroundImage: `url(${s3Url}/dps_placeholder.png`, ...listPatternStyle }
 			 }>
 					<ListPatternInfo  
@@ -39,7 +42,7 @@ export const listPatternStyle = {
 	padding: '20px',
   margin: '0px',
 	backgroundRepeat: 'no-repeat',
-	backgroundPosition: 'top',
+	backgroundPosition: 'center',
 	borderRadius: '1vw',
 	backgroundSize: 'cover',
 }
