@@ -27,7 +27,7 @@ export function Main({ path }:MainProps) {
 	useEffect(() => {
 		fetchData({});
 		// RE-RENDERING: put things into the below array to watch them for re-rendering at the top of the hierarchy
-	}, [ searchResults ]); 
+	}, [  ]); // searchResults
 
 	if (loading) {
 			return (

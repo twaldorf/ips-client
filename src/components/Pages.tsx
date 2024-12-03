@@ -21,7 +21,7 @@ export const Pages = ( { page, setPage, count } ) => {
 
   return (
     <ul style={listStyle}>Page:
-      { page_numbers.map( n => <li style={pageNum} onClick={ setPageTo }> {n + 1} </li>) }
+      { page_numbers.map( n => <a href="" onClick={(e) => e.preventDefault()}><li style={n + 1 == page ? activePageNum : pageNum } onClick={ setPageTo }> {n + 1} </li></a>) }
     </ul>
   )
 };
@@ -31,8 +31,20 @@ const listStyle = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
+  alignItems: 'center',
 }
 
 const pageNum = {
-  margin: '0 1rem',
+  padding: '1rem',
+  margin: '0 .4rem',
+  border: '1px solid #ddd',
+  borderRadius: '8px',
+  color: 'var(--primary-text)'
+}
+
+const activePageNum = {
+  ...pageNum,
+  color: 'white',
+  border: 'none',
+  backgroundColor: 'var(--active-effect)',
 }

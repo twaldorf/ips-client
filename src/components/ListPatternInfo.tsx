@@ -11,7 +11,7 @@ export function ListPatternInfo(props) {
             <div style={subitem}>
               <li>{props.format}</li>
               {/* TODO: support for denomination switch */}
-              <li>${props.price}</li>
+              { props.price && <li>${props.price}</li> }
             </div>
           </li>
 					<li>

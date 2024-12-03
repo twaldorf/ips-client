@@ -43,11 +43,11 @@ export function PatternList(props: PatternListProps) {
 
 	console.log(metadata)
 
-	const numpatterns = metadata.total_patterns
+	const numpatterns = metadata.total_patterns || metadata.patterns_returned;
 
 	return (
 		<Fragment>
-			<h2 style={h2Style}>{props.category} Patterns</h2>
+			<h2 style={h2Style}>{props.category} Patterns ({numpatterns})</h2>
 			<section style={ listStyle }>
 				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
 				{ props.limit > 0 && props.limit <= 10 && <StubPattern category={ props.category }/>}
