@@ -16,43 +16,38 @@ interface PatternListProps {
 	setPage: Function;
 	limit: number;
 	metadata: unknown;
+	count?: number;
 }
 
-export function PatternList(props: PatternListProps) {
-
-	const filters = props.filters;
-	const data = props.data;
-	const metadata = props.metadata;
+export function PatternList( { filters, data, metadata, limit, count, setPage, category, page }: PatternListProps) {
 
 	if (!data) {
 		return <ErrorText message={ "No pattern data found." }></ErrorText>
 	}
 
-	var filtered_data;
-
-	// Check if filters are active
+	// Filter: Apply active filters
+	var filtered_data:Array<unknown>;
 	if ( filters && Object.keys(filters).length > 0 ) {
 		filtered_data = filterData( data, filters );
   } else {
 		filtered_data = data;
 	}
 
-	if (props.limit > 0) {
-		filtered_data = filtered_data.slice(0, props.limit);
+	// Limited View: Present only some patterns
+	if (limit > 0) {
+		filtered_data = filtered_data.slice(0, limit);
 	}
 
-	console.log(metadata)
-
-	const numpatterns = metadata.total_patterns || metadata.patterns_returned;
+	const numpatterns = count || metadata.matching_patterns_count;
 
 	return (
 		<Fragment>
-			<h2 style={h2Style}>{props.category} Patterns ({numpatterns})</h2>
+			<h2 style={h2Style}>{category} Patterns ({numpatterns})</h2>
 			<section style={ listStyle }>
 				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
-				{ props.limit > 0 && props.limit <= 10 && <StubPattern category={ props.category }/>}
-			</section> 
-			<Pages setPage={ props.setPage } page={ props.page } count={ numpatterns } />
+				{ limit > 0 && limit <= 10 && <StubPattern category={ category }/>}
+			</section>
+			<Pages setPage={ setPage } page={ page } count={ numpatterns } />
 		</Fragment>
 	);
 }

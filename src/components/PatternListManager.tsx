@@ -7,11 +7,8 @@ import { searchContext } from './SearchContext';
 export function PatternListManager( { searchResults, setPage, page, metadata } ) {
   const { searchBundle } = useContext<SearchContextType>(searchContext);
   const category = searchBundle.filterBundle.category;
-  console.log(category)
 
-  // if (searchResults.data.length > 0) {
-    
-  // }
+  console.log(page)
 
   return <PatternList key={category} category={category} 
           data={searchResults}

@@ -21,12 +21,12 @@ interface MainProps {
 export function Main({ path }:MainProps) {
 	console.log('init Main')
 	// Set up search results and filters
-	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage, metadata } = searchHook();
+	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage, metadata } = searchHook('patterns/summary');
 
 	// Fetch initial pattern list
 	useEffect(() => {
 		fetchData({});
-		// RE-RENDERING: put things into the below array to watch them for re-rendering at the top of the hierarchy
+		// RE-RENDERING: put things into the below array to watch them for re-rendering at the top of the hierarchy but be careful about loops!
 	}, [  ]); // searchResults
 
 	if (loading) {
@@ -42,6 +42,8 @@ export function Main({ path }:MainProps) {
 			return <div>Error: {error.message}</div>;
 	}
 
+	console.log(metadata)
+
 	return (
 		<div>
 			<PurpleBar />
@@ -49,12 +51,13 @@ export function Main({ path }:MainProps) {
 				<Lander />
 				{categories.map((category) => (
 					<PatternList key={category} category={category} 
-	        data={searchResults}
+	        data={searchResults[category]}
 					filters={ { category: category } } 
 					setPage={setPage}
 					page={page}
 					metadata={metadata}
-	        limit={5}/>
+	        limit={5}
+					count={metadata.pattern_count_by_category[category]}/>
 				))}
 			<Footer />
 		</div>

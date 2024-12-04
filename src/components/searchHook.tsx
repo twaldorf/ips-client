@@ -14,8 +14,6 @@ export function searchHook(path='patterns') {
 
 	const [ metadata, setMetadata ] = useState({});
 
-	const page_length = 55;
-
 	const encodeArgumentsIntoURL = (request: string, argument: string, value:string):string => {
 		let r = request;
 		if (request.includes('?')) {
@@ -27,17 +25,21 @@ export function searchHook(path='patterns') {
 	}
 
 	const fetchData = async ( searchBundle ) => {
-		const { query, sort_by, page_number, filterBundle } = searchBundle
+		const { query, sort_by, page_number, filterBundle, limit } = searchBundle
 		console.log('search bundle: ', searchBundle)
 
+		// Build Request: Create a valid request stub
 		let request = `${apiUrl}/${path}`;
-		// is there a search query?
+
+		// Build Request: Append a search query if one exists in the bundle
+		// TODO: Use encodeArgumentsIntoURL function instead of this ternary mess
 		if (query && query.length > 0) request = query ? request + `/search?query=${encodeURIComponent(query)}` : request;
-		// are there filters we can include? maybe this should be after the search query?? how will it be able to parse these apart?
+
+		// Build Request: iterate through the filter bundle and append filterkey=value onto the request
 		if (filterBundle) {
 			Object.keys(filterBundle).map(filterkey => {
 				const criterion = filterBundle[filterkey];
-				if (criterion) request = encodeArgumentsIntoURL(request, 'filter', criterion);
+				if (criterion) request = encodeArgumentsIntoURL(request, filterkey, criterion);
 			})
 		}
 
