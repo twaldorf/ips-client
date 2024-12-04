@@ -14,8 +14,8 @@ interface PatternListProps {
 	filters: any;
 	page: number;
 	setPage: Function;
-	limit: number;
 	metadata: unknown;
+	limit?: number;
 	count?: number;
 }
 
@@ -40,6 +40,8 @@ export function PatternList( { filters, data, metadata, limit, count, setPage, c
 
 	const numpatterns = count || metadata.matching_patterns_count;
 
+	console.log('lim', limit)
+
 	return (
 		<Fragment>
 			<h2 style={h2Style}>{category} Patterns ({numpatterns})</h2>
@@ -47,7 +49,7 @@ export function PatternList( { filters, data, metadata, limit, count, setPage, c
 				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
 				{ limit > 0 && limit <= 10 && <StubPattern category={ category }/>}
 			</section>
-			<Pages setPage={ setPage } page={ page } count={ numpatterns } />
+			{ !limit && <Pages setPage={ setPage } page={ page } count={ numpatterns } /> }
 		</Fragment>
 	);
 }

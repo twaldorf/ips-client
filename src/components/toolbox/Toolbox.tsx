@@ -49,7 +49,7 @@ export function Toolbox({ path }:MainProps) {
 	return (
 		<div>
 			<Title />
-	    <PenList data={searchResults} filters={filterBundle} category="" page={0} setPage={setPage} limit={0} />
+	    {/* <PenList data={searchResults} filters={filterBundle} category="" page={0} setPage={setPage} limit={0} /> */}
 			<PatternTable data={allPatternResults} />
 			<Footer />
 		</div>

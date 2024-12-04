@@ -16,5 +16,5 @@ export function PatternListManager( { searchResults, setPage, page, metadata } )
           setPage={setPage}
           page={page}
           metadata={metadata}
-          limit={50}/> 
+          /> 
 }
