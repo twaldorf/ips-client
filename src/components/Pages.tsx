@@ -17,7 +17,11 @@ export const Pages = ( { page, setPage, count } ) => {
     setPage(n);
   }
 
-  const page_numbers = Array.from( Array( Math.round(count / patterns_per_page) ).keys() );
+  // const page_numbers = Array.from( Array( Math.floor(count / patterns_per_page) ).keys() );
+  let page_numbers:Array<number> = [];
+  for (let i = 0; i <= Math.floor(count / patterns_per_page); ++i) {
+    page_numbers.push(i);
+  }
 
   return (
     <ul style={listStyle}>Page:

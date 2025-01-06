@@ -8,7 +8,7 @@ export function PatternListManager( { searchResults, setPage, page, metadata } )
   const { searchBundle } = useContext<SearchContextType>(searchContext);
   const category = searchBundle.filterBundle.category;
 
-  console.log(page)
+  console.log('PatternListManager:', page)
 
   return <PatternList key={category} category={category} 
           data={searchResults}

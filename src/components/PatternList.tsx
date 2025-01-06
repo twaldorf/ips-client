@@ -20,18 +20,17 @@ interface PatternListProps {
 }
 
 export function PatternList( { filters, data, metadata, limit, count, setPage, category, page }: PatternListProps) {
-
 	if (!data) {
 		return <ErrorText message={ "No pattern data found." }></ErrorText>
 	}
 
 	// Filter: Apply active filters
 	var filtered_data:Array<unknown>;
-	if ( filters && Object.keys(filters).length > 0 ) {
-		filtered_data = filterData( data, filters );
-  } else {
+	// if ( filters && Object.keys(filters).length > 0 ) {
+	// 	filtered_data = filterData( data, filters );
+  // } else {
 		filtered_data = data;
-	}
+	// }
 
 	// Limited View: Present only some patterns
 	if (limit > 0) {
@@ -40,7 +39,7 @@ export function PatternList( { filters, data, metadata, limit, count, setPage, c
 
 	const numpatterns = count || metadata.matching_patterns_count;
 
-	console.log('lim', limit)
+	console.log('lim', limit, data)
 
 	return (
 		<Fragment>

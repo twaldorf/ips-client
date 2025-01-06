@@ -27,6 +27,8 @@ import { CompareDetail } from './components/toolbox/CompareDetail';
 import { Search } from "./components/Search";
 import { SearchProvider } from "./components/SearchContext";
 import { SearchBundle } from "./types";
+import { Login } from "./components/auth/Login";
+import { CreateUser } from "./components/auth/CreateUser";
 
 const App:preact.FunctionComponent = () => {
 
@@ -36,6 +38,8 @@ const App:preact.FunctionComponent = () => {
 					<Main path="/" />
 					<Search path="/search/:term" />
 					<Search path="/category/:category" />
+					<Login path="/login" />
+					<CreateUser path="/newuser" />
 					<Toolbox path="/toolbox" />
 					<Detail path="/detail/:Image" Image={':Image'}/>
 					<CompareDetail path="/pen/detail/:_id" _id={':_id'} />
