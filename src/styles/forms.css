@@ -71,6 +71,14 @@ input, textarea, select {
   color: var(--primary-text); /* Text color */
 }
 
+form input {
+	padding: 1rem;
+}
+
+form label {
+	margin-top: .6rem;
+}
+
 textarea {
 	width: 100%;
 	min-height: 4rem;
