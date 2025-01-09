@@ -1,5 +1,5 @@
 import "preact/debug";
-import { ComponentProps, h, render } from 'preact';
+import { ComponentProps, createContext, h, render } from 'preact';
 import Router, { Route } from 'preact-router';
 
 import axios, {isCancel, AxiosError} from 'axios';
@@ -29,25 +29,31 @@ import { SearchProvider } from "./components/SearchContext";
 import { SearchBundle } from "./types";
 import { Login } from "./components/auth/Login";
 import { CreateUser } from "./components/auth/CreateUser";
+import { UserContext } from "./components/user/UserContext";
+import { apiUrl } from "./config";
 
 const App:preact.FunctionComponent = () => {
+	
+	const [ user, setUser ] = useState(undefined);
+	const userPackage = { user, setUser };
+	axios.defaults.withCredentials = true;
 
 	return (
-		<Router>
-				
-					<Main path="/" />
-					<Search path="/search/:term" />
-					<Search path="/category/:category" />
-					<Login path="/login" />
-					<CreateUser path="/newuser" />
-					<Toolbox path="/toolbox" />
-					<Detail path="/detail/:Image" Image={':Image'}/>
-					<CompareDetail path="/pen/detail/:_id" _id={':_id'} />
-					<Input path="/input" />
-					<Edit path="/edit/:id" id={":id"} />
-					<Suggestions path="/suggestions" />
-				
+		<UserContext.Provider value={userPackage} >
+			<Router>
+				<Main path="/" />
+				<Search path="/search/:term" />
+				<Search path="/category/:category" />
+				<Login path="/login" />
+				<CreateUser path="/newuser" />
+				<Toolbox path="/toolbox" />
+				<Detail path="/detail/:Image" Image={':Image'}/>
+				<CompareDetail path="/pen/detail/:_id" _id={':_id'} />
+				<Input path="/input" />
+				<Edit path="/edit/:id" id={":id"} />
+				<Suggestions path="/suggestions" />	
 			</Router>
+		</UserContext.Provider>
 	)
 }
 

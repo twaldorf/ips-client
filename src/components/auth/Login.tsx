@@ -3,8 +3,10 @@ import { apiUrl } from "../../config"
 import { Title } from "../Title"
 import { ActionButtonWrapper, Box } from "../ui-utilities/uiComponents"
 import { buttonAction } from "../../styles/buttons"
-import { useState } from "preact/hooks"
+import { useContext, useState } from "preact/hooks"
 import { route } from "preact-router"
+import { UserContext } from "../user/UserContext"
+import axios from "axios"
 
 export const Login = ( props ) => {
   const [ formState, setFormState ] = useState({
@@ -13,6 +15,8 @@ export const Login = ( props ) => {
   });
   const [ loading, setLoading ] = useState(false);
   const [ error, setError ] = useState("");
+
+  const { user, setUser } = useContext(UserContext);
 
   const handleInput = (event) => {
     const target = event.target;
@@ -25,22 +29,28 @@ export const Login = ( props ) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    const request:Request = new Request(
-      `${apiUrl}/auth/login`, { 
-        body: JSON.stringify(formState), 
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        }
-      } );
-    console.log(request)
-    const response = await fetch( request );
-    if (response.ok) {
+    const response = await axios.post(`${apiUrl}/auth/login`, formState, {
+      headers: {'Content-Type': 'application/json'},
+      withCredentials : true
+    }).then(res => res)
+    // const request:Request = new Request(
+    //   `${apiUrl}/auth/login`, { 
+    //     body: JSON.stringify(formState), 
+    //     method: 'POST',
+    //     credentials: 'include',
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     }
+    //   } );
+    console.log(response);
+    if (response.status == 201) {
       setLoading(false);
-      setError('Success!')
+      setError('Success!');
+      const newUser = await response.data;
+      setUser(newUser.user);
       route('/');
     } else {
-      const error_text = await response.json();
+      const error_text = await response.data;
       setLoading(false);
       setError(error_text.error);
     }

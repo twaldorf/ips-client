@@ -1,6 +1,40 @@
 import { Link } from "preact-router"
+import { UserContext } from "./user/UserContext"
+import { useContext } from "preact/hooks"
+import { Fragment } from "preact/jsx-runtime"
+import { apiUrl } from "../config";
+import axios from "axios";
 
 export function Title(props) {
+  const { user, setUser } = useContext(UserContext);
+
+  // Logout functionality 
+  const Usertag = ({ user }) => {
+    const logout = () => {
+      const logoutAttempt = axios.post(
+        `${apiUrl}/logout`, 
+        { 
+          headers: {'Content-Type': 'application/json'},
+          withCredentials: true
+        }).then((response) => {
+          if (response.status == 201) {
+            setUser(undefined)
+            return response
+          } else {
+            return response;
+          };
+      });
+      console.log(logoutAttempt)
+    };
+
+    return (
+      <Fragment>
+        { user.username }
+          <button onClick={logout}>- (logout)</button>
+      </Fragment>
+    )
+  };
+
   return (
     <header className={'title'} style={head}>
       <Link href="/">
@@ -10,7 +44,12 @@ export function Title(props) {
         <Link href="/input">
           <li style={link}>Add Pattern</li>
         </Link>
-        <li style={disabled}>Log In</li>
+        { !user && 
+          <Link href="/login">
+            <li style={link}>Log In</li>
+          </Link>
+        }
+        { user && <li><Usertag user={user}></Usertag></li> }
       </nav>
       
     </header>
