@@ -4,6 +4,7 @@ import { useContext } from "preact/hooks"
 import { Fragment } from "preact/jsx-runtime"
 import { apiUrl } from "../config";
 import axios from "axios";
+import { apiInstance } from "./auth/Api";
 
 export function Title(props) {
   const { user, setUser } = useContext(UserContext);
@@ -11,11 +12,11 @@ export function Title(props) {
   // Logout functionality 
   const Usertag = ({ user }) => {
     const logout = () => {
-      const logoutAttempt = axios.post(
-        `${apiUrl}/logout`, 
+      const logoutAttempt = apiInstance.post(
+        `/logout`, 
         { 
+          withCredentials: true,
           headers: {'Content-Type': 'application/json'},
-          withCredentials: true
         }).then((response) => {
           if (response.status == 201) {
             setUser(undefined)

@@ -7,6 +7,7 @@ import { useContext, useState } from "preact/hooks"
 import { route } from "preact-router"
 import { UserContext } from "../user/UserContext"
 import axios from "axios"
+import { apiInstance } from "./Api"
 
 export const Login = ( props ) => {
   const [ formState, setFormState ] = useState({
@@ -29,9 +30,9 @@ export const Login = ( props ) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    const response = await axios.post(`${apiUrl}/auth/login`, formState, {
+    const response = await apiInstance.post('/auth/login', formState, {
+      withCredentials : true,
       headers: {'Content-Type': 'application/json'},
-      withCredentials : true
     }).then(res => res)
     // const request:Request = new Request(
     //   `${apiUrl}/auth/login`, { 
