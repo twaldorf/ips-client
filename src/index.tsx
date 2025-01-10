@@ -36,7 +36,6 @@ const App:preact.FunctionComponent = () => {
 	
 	const [ user, setUser ] = useState(undefined);
 	const userPackage = { user, setUser };
-	axios.defaults.withCredentials = true;
 
 	return (
 		<UserContext.Provider value={userPackage} >
