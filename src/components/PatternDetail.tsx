@@ -46,7 +46,7 @@ export function Pattern({ data }) {
         return ( 
           <tr style={row}>
             { isNaN(parseInt(key)) &&
-              <th style={ row }>{ key }</th>
+              <th style={ thRow }>{ key }</th>
             }
             <td style={row}>{ datum }</td>
           </tr>
@@ -74,7 +74,7 @@ export function Pattern({ data }) {
             : <img style={img} src={`${s3Url}/${data.image_name}`} alt="" />}
         </div>
         <div style={colStyle}>
-          <div style={noteBubble}>
+          <div style={{...wrapAnywhere, ...noteBubble}}>
             <label for="pattern-url"><h4 className="accent">Link to pattern</h4></label>
             <a className="accent" id="pattern-url" href={url}>{url}</a>
           </div>
@@ -93,7 +93,11 @@ export function Pattern({ data }) {
 }
 
 const link = {
-  textAlign: 'left'
+  textAlign: 'left',
+}
+
+export const wrapAnywhere = {
+  wordWrap: 'anywhere'
 }
 
 const img = {
@@ -114,10 +118,18 @@ export const table = {
   borderCollapse: 'collapse',
   width: '100%',
   textAlign: 'left',
+  tableLayout: 'fixed',
+  wordWrap: 'break-word',
+  fontSize: '.8rem',
 }
 
 export const row = {
   padding: '.5rem .75rem',
   border: '1px solid #dddddd',
   verticalAlign: 'left',
+}
+
+export const thRow = {
+  ...row,
+  maxWidth: '30%'
 }

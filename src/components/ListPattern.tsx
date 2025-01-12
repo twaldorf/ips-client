@@ -38,11 +38,12 @@ export const listPatternStyle = {
 	color: 'white',
 	backgroundColor: 'antiquewhite',
 	fontStyle: 'none',
-	maxHeight: '240px',
+	height: '140px',
 	padding: '20px',
   margin: '0px',
 	backgroundRepeat: 'no-repeat',
 	backgroundPosition: 'center',
 	borderRadius: '1vw',
 	backgroundSize: 'cover',
+	overflow: 'hidden',
 }

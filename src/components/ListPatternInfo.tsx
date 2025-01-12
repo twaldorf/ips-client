@@ -5,7 +5,7 @@ export function ListPatternInfo(props) {
 		<div style={container} className="listItemInfo">
 			<h4>{props.author}</h4>
 			<h3>{props.name}</h3>
-			<div>
+			<div style={hiddenOverflow}>
 				<ul style={listItemStyle}>
 					<li>
             <div style={subitem}>
@@ -23,10 +23,15 @@ export function ListPatternInfo(props) {
 	)
 }
 
+export const hiddenOverflow = {
+  overflow: 'hidden'
+}
+
 const subitem = {
   display: 'flex',
   flexDirection: 'column',
   textAlign: 'left',
+  overflow: 'hidden'
 }
 
 const container = {
@@ -38,7 +43,7 @@ const container = {
 const listItemStyle = {
   fontWeight: 'bold',
   fontSize: '1.2rem',
-
+  overflow: 'hidden',
 	margin: '0px',
 	padding: '10px 0 0 0',
   display: 'flex',
