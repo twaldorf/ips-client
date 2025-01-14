@@ -10,11 +10,6 @@ export default defineConfig({
       //   changeOrigin: true,
 			// 	secure: false
       // },
-			'/schema': {
-        target: process.env.VITE_SERVER_URL,
-        changeOrigin: true,
-				secure: false
-      },
 			'/patterns': {
 				target: process.env.VITE_SERVER_URL,
 				// target: import.meta.env.VITE_SERVER_URL,

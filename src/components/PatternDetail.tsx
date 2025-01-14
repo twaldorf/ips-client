@@ -5,6 +5,7 @@ import { Fragment, render } from 'preact';
 import { addPattern } from './addPatternHook';
 import { noteBubble } from '../styles/bubbles';
 import { buttonRefine } from '../styles/buttons';
+import { AddToList } from './lists/addToList';
 
 const max_depth = 4;
 
@@ -66,6 +67,7 @@ export function Pattern({ data }) {
 
       <h2>{ data.title }</h2>
       <h3>{ data.designer }</h3>
+      <AddToList patternId={_id}></AddToList>
 
       <section className={"two-column"}>
         <div style={colStyle}>

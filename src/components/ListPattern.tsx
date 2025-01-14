@@ -5,6 +5,7 @@ import { s3Url } from "../config"
 
 import placeholderImgUrl from '../assets/placeholder.png'
 import { Link } from "preact-router"
+import { AddToList } from "./lists/addToList"
 
 export function Pattern(props) {
 	
@@ -28,6 +29,7 @@ export function Pattern(props) {
 						ydg45={props.data['Ydg, 45"']}
 						/>
 				</div>
+				<AddToList patternId={props.data._id}></AddToList>
 				<PatternTags tags={ props.data.categories } fabrics={ props.data.fabrics }/>
 			</div>
 		</Link>

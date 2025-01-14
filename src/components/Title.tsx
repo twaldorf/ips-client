@@ -30,6 +30,8 @@ export function Title(props) {
       });
       console.log(logoutAttempt)
     };
+    
+    console.log(user)
 
     return (
       <Fragment>
