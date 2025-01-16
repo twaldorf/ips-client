@@ -5,7 +5,7 @@ import { s3Url } from "../config"
 
 import placeholderImgUrl from '../assets/placeholder.png'
 import { Link } from "preact-router"
-import { AddToList } from "./lists/addToList"
+import { AddToList } from "./lists/AddToList"
 
 export function Pattern(props) {
 	
@@ -14,7 +14,6 @@ export function Pattern(props) {
 	return (
 		<Link href={`/detail/${props.data._id}`} >
 			<div>
-				<Bullet rank={props.data.id} />
 				<div style={ image ? 
 				{ backgroundImage: `url(${s3Url}/${image})`, ...listPatternStyle } :
 				{ backgroundImage: `url(${s3Url}/dps_placeholder.png`, ...listPatternStyle }
@@ -28,9 +27,9 @@ export function Pattern(props) {
 						ydg60={props.data['Ydg, 54"+']}
 						ydg45={props.data['Ydg, 45"']}
 						/>
+					<AddToList patternId={props.data._id}></AddToList>
 				</div>
-				<AddToList patternId={props.data._id}></AddToList>
-				<PatternTags tags={ props.data.categories } fabrics={ props.data.fabrics }/>
+				{/* <PatternTags tags={ props.data.categories } fabrics={ props.data.fabrics }/> */}
 			</div>
 		</Link>
 	)
@@ -48,4 +47,5 @@ export const listPatternStyle = {
 	borderRadius: '1vw',
 	backgroundSize: 'cover',
 	overflow: 'hidden',
+	position: 'relative'
 }

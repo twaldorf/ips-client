@@ -30,19 +30,26 @@ export function Title(props) {
       });
       console.log(logoutAttempt)
     };
-    
-    console.log(user)
 
     return (
       <Fragment>
         <div style={userBubble}>
-
-          { user.username }
+        <Link href={`/user/${encodeURI(user.username)}`}>
+          <h4 style={usernameStyle}>
+            { user.username }
+          </h4>
+        </Link>
           <button onClick={logout} style={logoutBtn}>Log out</button>
         </div>
       </Fragment>
     )
   };
+
+  const usernameStyle = {
+    display: 'block',
+    fontWeight: 'bold',
+    color: 'var(--primary-text)'
+  }
 
   const Hint = ({ children, hintText }) => {
     const [ visible, setVisible ] = useState(false);
@@ -136,12 +143,15 @@ const userBubble = {
   borderRadius,
   border: '1px solid #efefef',
   padding: '1rem',
+  display: 'flex',
+  alignItems: 'center',
 }
 
 const logoutBtn = {
   borderRadius: '4px',
-  backgroundColor: accent,
+  backgroundColor: 'var(--inactive-effect)',
   border: 'none',
+  padding: '.6rem',
   marginLeft: '1rem',
 };
 

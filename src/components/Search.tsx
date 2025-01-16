@@ -16,7 +16,8 @@ import { searchContext, SearchProvider } from "./SearchContext";
 import { SearchBundle } from "../types";
 
 
-export function Search({ category }) {
+export function Search(props:unknown) {
+	const category = props.category;
 	console.log(category)
 	// Set up search results and filters
 	const { fetchData, fetchSchema, loading, error, schema, searchResults, sortSearch, page, setPage, metadata } = searchHook();

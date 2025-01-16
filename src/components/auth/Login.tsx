@@ -33,28 +33,18 @@ export const Login = ( props ) => {
     const response = await apiInstance.post('/auth/login', formState, {
       withCredentials : true,
       headers: {'Content-Type': 'application/json'},
-    }).then(res => res)
-    // const request:Request = new Request(
-    //   `${apiUrl}/auth/login`, { 
-    //     body: JSON.stringify(formState), 
-    //     method: 'POST',
-    //     credentials: 'include',
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     }
-    //   } );
-    console.log(response);
-    if (response.status == 201) {
+    }).then(res => {
       setLoading(false);
       setError('Success!');
-      const newUser = await response.data;
+      const newUser = res.data;
       setUser(newUser.user);
       route('/');
-    } else {
-      const error_text = await response.data;
+    }).catch((error) => {
+      const error_text = error.response.data.error;
       setLoading(false);
-      setError(error_text.error);
-    }
+      setError(error_text);
+      console.log(error.response)
+    });
   }
 
   return (
@@ -69,7 +59,7 @@ export const Login = ( props ) => {
           <label htmlFor="password">Password</label>
           <input type="password" name="password" onInput={handleInput}/>
           { loading && <h4>Loading...</h4> }
-          { error.length > 0 && <h4>{error}</h4>}
+          { error && <h4>{error}</h4>}
           <ActionButtonWrapper style={btn}>
             <input type="submit" value="Login" style={buttonAction}>Login</input>
           </ActionButtonWrapper>

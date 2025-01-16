@@ -31,6 +31,7 @@ import { Login } from "./components/auth/Login";
 import { CreateUser } from "./components/auth/CreateUser";
 import { UserContext } from "./components/user/UserContext";
 import { apiUrl } from "./config";
+import { Profile } from "./components/user/Profile";
 
 const App:preact.FunctionComponent = () => {
 	
@@ -41,6 +42,7 @@ const App:preact.FunctionComponent = () => {
 		<UserContext.Provider value={userPackage} >
 			<Router>
 				<Main path="/" />
+				<Profile path="/user/:username" />
 				<Search path="/search/:term" />
 				<Search path="/category/:category" />
 				<Login path="/login" />

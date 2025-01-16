@@ -48,7 +48,7 @@ export function PatternList( { filters, data, metadata, limit, count, setPage, c
 				{ filtered_data.map( ( element ) => <Pattern data={ element } /> ) }
 				{ limit > 0 && limit <= 10 && <StubPattern category={ category }/>}
 			</section>
-			{ !limit && <Pages setPage={ setPage } page={ page } count={ numpatterns } /> }
+			{ !limit && page && <Pages setPage={ setPage } page={ page } count={ numpatterns } /> }
 		</Fragment>
 	);
 }

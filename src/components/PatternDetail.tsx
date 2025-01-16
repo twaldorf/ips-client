@@ -5,7 +5,7 @@ import { Fragment, render } from 'preact';
 import { addPattern } from './addPatternHook';
 import { noteBubble } from '../styles/bubbles';
 import { buttonRefine } from '../styles/buttons';
-import { AddToList } from './lists/addToList';
+import { AddToList } from './lists/AddToList';
 
 const max_depth = 4;
 
