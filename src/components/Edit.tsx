@@ -9,6 +9,7 @@ import { apiUrl } from "../config";
 import { buttonRefine } from "../styles/buttons";
 import { noteBubble } from "../styles/bubbles";
 import { handleFieldUpdate } from "./utilities/formUtils";
+import { apiInstance } from "./auth/Api";
 
 export function EditPattern(props) {
   const { id } = props;
@@ -48,7 +49,7 @@ export function EditPattern(props) {
   async function Submit() {
     try {
       setLoading(true);
-      const response = await axios.post(
+      const response = await apiInstance.post(
         `${apiUrl}/pattern/update?_id=${id}`, data
       )
       console.log(response)
